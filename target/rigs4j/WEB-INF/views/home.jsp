@@ -29,7 +29,7 @@
 </head>
 
 <body>
-	
+	<div><%@include file="navbar.jsp" %></div>
     <div id="page-wrap">
     
         <img src="<c:url value='/resources/old.jpeg'/>" alt="Photo of Youthful William" id="pic" />
