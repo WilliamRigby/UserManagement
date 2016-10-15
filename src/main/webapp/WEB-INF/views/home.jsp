@@ -4,7 +4,7 @@
 
 <head>
      <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
-     <link rel='stylesheet' href="<c:url value='/resources/bootstrap-3.3.7-dist/css/bootstrap.min.css'/>">
+     <!-- <link rel='stylesheet' href="<c:url value='/resources/bootstrap-3.3.7-dist/css/bootstrap.min.css'/>"> -->
      <title>One Page Resume</title>
 
      <style type="text/css">
@@ -87,7 +87,8 @@
             
             <dt>Experience</dt>
             <dd>
-                <h2>United Parcel Service <span>Application Development Co-op - Louisville, KY - June 2015-December 2016</span></h2>
+                <h2>United Parcel Service</h2>
+                <h4>Application Development Co-op - Louisville, KY - June 2015-December 2016</h4>
                 <ul>
                     <li>Worked in a department which did middleware / application integration</li>
                     <li>Created Camel routes in Java</li>
