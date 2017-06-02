@@ -7,6 +7,9 @@
      <!-- <link rel='stylesheet' href="<c:url value='/resources/bootstrap-3.3.7-dist/css/bootstrap.min.css'/>"> -->
      <title>One Page Resume</title>
 
+
+    <link rel='stylesheet' href="<c:url value='/resources/style.css'/>">
+    <!--
      <style type="text/css">
         * { margin: 0; padding: 0; }
         body { font: 16px Helvetica, Sans-Serif; line-height: 24px; background: url(images/noise.jpg); }
@@ -26,6 +29,7 @@
         dd { width: 600px; float: right; }
         dd.clear { float: none; margin: 0; height: 15px; }
      </style>
+     -->
 </head>
 
 <body>
@@ -113,7 +117,7 @@
     
     </div>
 	
-	<script type="text/javascript" src="webjars/jquery/2.1.1/jquery.min.js"></script>
-	<script type="text/javascript" src="webjars/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+	<!-- <script type="text/javascript" src="webjars/jquery/2.1.1/jquery.min.js"></script> -->
+	<!-- <script type="text/javascript" src="webjars/bootstrap/3.2.0/js/bootstrap.min.js"></script> -->
 </body>
 </html>
