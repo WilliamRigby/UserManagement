@@ -37,10 +37,7 @@ public class HomeController {
 	@RequestMapping(value="/")
 	public ModelAndView test(HttpServletResponse response) throws IOException {
 
-		List<User> users = userDAO.selectTop100();
-
 		ModelAndView model = new ModelAndView("home");
-		model.addObject("users", users);
 
 		return model;
 	}

@@ -115,24 +115,6 @@
         
         <div class="clear"></div>
 
-
-        <div align="center">
-            <h1>Contact List</h1>
-            <table border="1">
-                <th>username</th>
-                <th>password</th>
-                <c:forEach var="user" items="${users}" varStatus="status">
-                    <tr>
-                        <td>${status.index + 1}</td>
-                        <td>${user.username}</td>
-                        <td>${user.password}</td>>
-                    </tr>
-                </c:forEach>
-            </table>
-
-
-        </div>
-
     </div>
 	
 	<!-- <script type="text/javascript" src="webjars/jquery/2.1.1/jquery.min.js"></script> -->
