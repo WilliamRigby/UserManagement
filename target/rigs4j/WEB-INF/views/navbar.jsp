@@ -32,10 +32,10 @@
     <div class="modal-content">
       <div class="modal-header">
         <button type="button" class="close" data-dismiss="modal">&times;</button>
-        <h4 class="modal-title">Modal Header</h4>
+        <h4 class="modal-title">Login</h4>
       </div>
       <div class="modal-body">
-        <p>Some text in the modal.</p>
+        <p>Login Credentials: </p>
         <div class="form-group">
           <label for="login_usr">Name:</label>
           <input type="text" class="form-control" id="login_usr">
@@ -58,10 +58,10 @@
     <div class="modal-content">
       <div class="modal-header">
         <button type="button" class="close" data-dismiss="modal">&times;</button>
-        <h4 class="modal-title">Modal Header</h4>
+        <h4 class="modal-title">Register</h4>
       </div>
       <div class="modal-body">
-        <p>Some text in the modal.</p>
+        <p>Register New User</p>
         <div class="form-group">
           <label for="register_usr">Name:</label>
           <input type="text" class="form-control" id="register_usr">
