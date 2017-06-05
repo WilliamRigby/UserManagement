@@ -46,24 +46,11 @@ public class HomeController {
 	@RequestMapping(value="/adduser", method = RequestMethod.POST)
 	public @ResponseBody String register(@RequestBody User user, HttpServletRequest request) throws JsonMappingException, JsonParseException, IOException {
 
-		// now simply convert your JSON string into your UserProfile POJO
-		// using Jackson's ObjectMapper.readValue() method, whose first
-		// parameter your JSON parameter as String, and the second
-		// parameter is the POJO class.
-
-		//User profile = new ObjectMapper().readValue(data, User.class);
 
 
-		userDAO.insert(user);
+		String jsonResponse = userDAO.insert(user);
 
-		ObjectMapper mapper = new ObjectMapper();
-
-		ArrayNode arrayNode = mapper.createArrayNode();
-		ObjectNode objectNode1 = mapper.createObjectNode();
-		objectNode1.put("response", "success");
-		arrayNode.add(objectNode1);
-
-		return arrayNode.toString();
+		return jsonResponse;
 
 		// rest of your code goes here.
 	}
@@ -79,22 +66,33 @@ public class HomeController {
 		ObjectNode objectNode1 = mapper.createObjectNode();
 
 
-		if(returned.getPassword() != null && returned.getPassword().equals(user.getPassword())) {
+		if(returned != null && returned.getPassword() != null && returned.getPassword().equals(user.getPassword()))
+		{
 			objectNode1.put("response", "match");
 			arrayNode.add(objectNode1);
 		}
-		else {
-			objectNode1.put("response", "error");
+		else if( returned != null && returned.getPassword() != null && !returned.getPassword().equals(user.getPassword()))
+		{
+			objectNode1.put("response", "incorrect_pass");
 			arrayNode.add(objectNode1);
 		}
+		else if(returned == null || returned.getPassword() == null)
+		{
+			objectNode1.put("response", "null");
+			arrayNode.add(objectNode1);
+		}
+
+
 
 		return arrayNode.toString();
 
 	}
 
 
-		@RequestMapping(value="/test", method = RequestMethod.GET)
-	public ModelAndView test2(HttpServletResponse response) throws JsonMappingException, JsonParseException, IOException {
+	@RequestMapping(value="/test", method = RequestMethod.GET)
+	public ModelAndView test2(HttpServletResponse response) throws JsonMappingException, JsonParseException, IOException
+
+	{
 
 		// now simply convert your JSON string into your UserProfile POJO
 		// using Jackson's ObjectMapper.readValue() method, whose first

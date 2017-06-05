@@ -122,7 +122,6 @@
 			<url>https://oss.sonatype.org/content/repositories/springsource-milestones</url>
 		</repository>
 	</repositories>
-
 	<build>
 		<finalName>rigs4j</finalName>
 		<plugins>
@@ -135,6 +134,7 @@
 					<target>${java.version}</target>
 				</configuration>
 			</plugin>
+
 			<plugin>
 				<groupId>org.apache.tomcat.maven</groupId>
 				<artifactId>tomcat7-maven-plugin</artifactId>

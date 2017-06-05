@@ -1,5 +1,8 @@
 package com.rigatron.rigs4j.dao;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.node.ArrayNode;
+import com.fasterxml.jackson.databind.node.ObjectNode;
 import org.apache.commons.dbcp.BasicDataSource;
 import org.springframework.jdbc.core.JdbcTemplate;
 import com.rigatron.rigs4j.models.*;
@@ -23,15 +26,26 @@ public class UserDAO {
 
     }
 
-    public void insert(User usr)
+    public String insert(User usr)
     {
         String sql = "INSERT INTO public.users(username, password) VALUES (?, ?);";
+        ObjectMapper mapper = new ObjectMapper();
+        ArrayNode arrayNode = mapper.createArrayNode();
+        ObjectNode objectNode = mapper.createObjectNode();
+
         try {
             jdbcTemplate.update(sql, new Object[]{usr.getUsername(), usr.getPassword()});
+
+            objectNode.put("response", "success");
+            arrayNode.add(objectNode);
+
         }
         catch(Exception ex) {
-            ex.printStackTrace();
+            objectNode.put("error", ex.getMessage());
         }
+
+        arrayNode.add(objectNode);
+        return arrayNode.toString();
     }
 
     public User login(User usr)

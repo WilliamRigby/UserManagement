@@ -53,7 +53,7 @@
         <div id="objective">
             <p>
                I'm a senior majoring in Computer Engineering & Computer Science (CECS) at University of Louisville.
-			   I have almost 2 years of work experience on a corporate development team, using a large variety of technologies.
+			   I have over 2 years of work experience on a corporate development team, using a large variety of technologies.
 			   I'm looking for work and am open to both front end and back end development, but would like to work on products
 			   which have a well defined group of end users.
             </p>
@@ -74,31 +74,39 @@
                 <p><strong>Major:</strong> Business Administration<br />
                    <strong>Minor:</strong> Political Science</p>
             </dd>
-            
+
+            <dd class="clear"></dd>
+
+            <dt>Work Experience</dt>
+            <dd>
+                <h2>University of Louisville, CECS Department</h2>
+                <h4>Mobile Application Developer - Louisville, KY - March 2017-Present</h4>
+                <ul>
+                    <li>Help to create two mobile applications using Xamarin Forms for Kindred Healthcare</li>
+                    <li>Interface with Kindred team members, using Scrum style development</li>
+                    <li>Assist in the creation of new design patterns</li>
+                </ul>
+                <h2>United Parcel Service</h2>
+                <h4>Application Development Co-op - Louisville, KY - May 2015 – August 2015 & January 2016 – Decemeber 2016</h4>
+                <ul>
+                    <li>Assisted with software development in a middleware departmen</li>
+                    <li>Assisted in the prototyping of an integration testing tool for the department’s main application. Built using an ASP .NET MVC frontend, with Java/Camel backend web services, which accessed a T-SQL database</li>
+                    <li>Modified existing message routes, using the Java integration framework Apache Camel, the Spring framework, and implemented JUnit tests for added code</li>
+                </ul>
+            </dd>
             <dd class="clear"></dd>
             
             <dt>Skills</dt>
             <dd>                            
                 <h2>Technologies with Advanced Knowledge</h2>
-                <p>Java (Camel, Spring, OSGi), C# (ASP .NET MVC)</p>
+                <p>Java, C#, C</p>
 				<h2>Technologies with Intermediate Knowledge</h2>
-                <p>Javascript (JQuery), C</p>
+                <p>SQL Server, Javascript, HTML/CSS</p>
 				<h2>Technologies with Working Knowledge</h2>
-                <p>HTML, CSS</p>
+                <p>MySQL, Python, C++</p>
             </dd>
             
-            <dd class="clear"></dd>
-            
-            <dt>Experience</dt>
-            <dd>
-                <h2>United Parcel Service</h2>
-                <h4>Application Development Co-op - Louisville, KY - June 2015-December 2016</h4>
-                <ul>
-                    <li>Worked in a department which did middleware / application integration</li>
-                    <li>Created Camel routes in Java</li>
-                    <li>Worked on a integration testing tool with front end in ASP .NET MVC, backend in Java</li>
-                </ul>
-            </dd>
+
             
             <dd class="clear"></dd>
             

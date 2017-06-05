@@ -133,10 +133,11 @@
 
                     if(response.toString() == "match") {
 
-
                         alert("You are now 'logged in'")
-                    } else {
-                        alert("incorrect password or something")
+                    } else if(response.toString() == "incorrect_pass") {
+                        alert("incorrect password")
+                    } else if(response.toString() == "null") {
+                        alert("500")
                     }
 
                 },
