@@ -46,7 +46,11 @@ public class MvcConfiguration extends WebMvcConfigurerAdapter{
 	@Bean
 	public BasicDataSource dataSource() throws URISyntaxException {
 
-		GetDatabaseVariables();
+		//GetDatabaseVariables();
+
+		String JDBC_DATABASE_URL = System.getenv("JDBC_DATABASE_URL");
+		String JDBC_DATABASE_USERNAME = System.getenv("JDBC_DATABASE_USERNAME");
+		String JDBC_DATABASE_PASSWORD = System.getenv("JDBC_DATABASE_PASSWORD");
 
 		try {
 			DriverManager.registerDriver((Driver) Class.forName("org.postgresql.Driver").newInstance());

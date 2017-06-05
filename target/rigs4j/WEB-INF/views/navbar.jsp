@@ -128,10 +128,10 @@
                 dataType: 'json',
                 timeout: 600000,
                 success: function (data) {
-                    alert("ajax success")
+                    alert("You are now 'logged in'")
                 },
                 error: function (e) {
-                    alert("ajax error")
+                    alert("There was an error")
                 }
             });
         });
