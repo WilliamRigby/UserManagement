@@ -80,14 +80,14 @@
             <dt>Work Experience</dt>
             <dd>
                 <h2>University of Louisville, CECS Department</h2>
-                <h4>Mobile Application Developer - Louisville, KY - March 2017-Present</h4>
+                <h4>Mobile Application Developer, Louisville,KY, March 2017-Present</h4>
                 <ul>
                     <li>Help to create two mobile applications using Xamarin Forms for Kindred Healthcare</li>
                     <li>Interface with Kindred team members, using Scrum style development</li>
                     <li>Assist in the creation of new design patterns</li>
                 </ul>
                 <h2>United Parcel Service</h2>
-                <h4>Application Development Co-op - Louisville, KY - May 2015 – August 2015 & January 2016 – Decemeber 2016</h4>
+                <h4>Application Development Co-op, Louisville,KY, May 2015-August 2015 & January 2016-Decemeber 2016</h4>
                 <ul>
                     <li>Assisted with software development in a middleware departmen</li>
                     <li>Assisted in the prototyping of an integration testing tool for the department’s main application. Built using an ASP .NET MVC frontend, with Java/Camel backend web services, which accessed a T-SQL database</li>
