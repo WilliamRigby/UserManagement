@@ -128,7 +128,12 @@
                 dataType: 'json',
                 timeout: 600000,
                 success: function (data) {
-                    alert("You are now 'logged in'")
+                    if(data.response == "match") {
+                        alert("You are now 'logged in'")
+                    } else {
+                        alert("incorrect password or something")
+                    }
+
                 },
                 error: function (e) {
                     alert("There was an error")
