@@ -1,5 +1,5 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-
+<%@ page import="com.rigatron.rigs4j.models.User"%>
 
 <head>
 	<link rel='stylesheet' href="<c:url value='/resources/bootstrap-3.3.7-dist/css/bootstrap.min.css'/>">
@@ -37,11 +37,11 @@
       <div class="modal-body">
         <p>Some text in the modal.</p>
         <div class="form-group">
-          <label for="usr">Name:</label>
+          <label for="login_usr">Name:</label>
           <input type="text" class="form-control" id="login_usr">
         </div>
         <div class="form-group">
-          <label for="pwd">Password:</label>
+          <label for="login_pwd">Password:</label>
           <input type="password" class="form-control" id="login_pwd">
         </div>
       </div>
@@ -63,11 +63,11 @@
       <div class="modal-body">
         <p>Some text in the modal.</p>
         <div class="form-group">
-          <label for="usr">Name:</label>
+          <label for="register_usr">Name:</label>
           <input type="text" class="form-control" id="register_usr">
         </div>
         <div class="form-group">
-          <label for="pwd">Password:</label>
+          <label for="register_pwd">Password:</label>
           <input type="password" class="form-control" id="register_pwd">
         </div>
       </div>
@@ -82,23 +82,58 @@
 
 
     $(document).ready(function() {
-        $("#login_btnSubmit").click(function(){
+        $("#register_btnSubmit").click(function(){
 
-            var username = $("#login_usr").val();
-            var password = $("#login_pwd").val();
+            var data = {}
+            var username = $("#register_usr").val();
+            var password = $("#register_pwd").val();
+            data["username"] = username;
+            data["password"] = password;
 
-            alert("username: " + username + " with password: " + password + " is now logged in lol");
+            var json = JSON.stringify(data)
+
+            $.ajax({
+                type: "POST",
+                contentType: "application/json",
+                url: "adduser/",
+                data: json,
+                dataType: 'json',
+                timeout: 600000,
+                success: function (data) {
+                    alert("ajax success")
+                },
+                error: function (e) {
+                    alert("ajax error")
+                }
+            });
         });
     });
 
-
     $(document).ready(function() {
-        $("#register_btnSubmit").click(function(){
+        $("#login_btnSubmit").click(function(){
 
-            var username = $("#register_usr").val();
-            var password = $("#register_pwd").val();
+            var data = {}
+            var username = $("#login_usr").val();
+            var password = $("#login_pwd").val();
+            data["username"] = username;
+            data["password"] = password;
 
-            alert("username: " + username + " with password: " + password + " is now registered lol");
+            var json = JSON.stringify(data)
+
+            $.ajax({
+                type: "POST",
+                contentType: "application/json",
+                url: "login/",
+                data: json,
+                dataType: 'json',
+                timeout: 600000,
+                success: function (data) {
+                    alert("You are now 'logged in'")
+                },
+                error: function (e) {
+                    alert("There was an error")
+                }
+            });
         });
     });
 

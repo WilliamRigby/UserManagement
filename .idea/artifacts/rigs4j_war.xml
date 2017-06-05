@@ -1,0 +1,8 @@
+<component name="ArtifactManager">
+  <artifact type="war" name="rigs4j:war">
+    <output-path>$PROJECT_DIR$/target</output-path>
+    <root id="archive" name="rigs4j.war">
+      <element id="artifact" artifact-name="rigs4j:war exploded" />
+    </root>
+  </artifact>
+</component>
