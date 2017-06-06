@@ -23,7 +23,7 @@ public class UserDAO {
     public UserDAO(BasicDataSource dataSource)
     {
         jdbcTemplate = new JdbcTemplate(dataSource);
-
+        jdbcTemplate.setQueryTimeout(10);
     }
 
     public String insert(User usr)
@@ -50,7 +50,7 @@ public class UserDAO {
 
     public User login(User usr)
     {
-        String sql = "SELECT * FROM public.users WHERE username = ?;";
+        String sql = "SELECT * FROM public.users WHERE username = (?);";
         UserRowMapper rowmapper = new UserRowMapper();
 
         User user = new User();
