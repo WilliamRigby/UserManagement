@@ -9,7 +9,7 @@
 
 
     <link rel='stylesheet' href="<c:url value='/resources/style.css'/>">
-    <!--
+
      <style type="text/css">
         * { margin: 0; padding: 0; }
         body { font: 16px Helvetica, Sans-Serif; line-height: 24px; background: url(images/noise.jpg); }
@@ -29,7 +29,7 @@
         dd { width: 600px; float: right; }
         dd.clear { float: none; margin: 0; height: 15px; }
      </style>
-     -->
+     
 </head>
 
 <body>
