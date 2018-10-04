@@ -2,13 +2,13 @@
 *.class
 
 
-*/target/**
+*/target/*
 
 # eclipse project file
 .project
 
 # idea folder
-*/.idea/**
+*/.idea/*
 
 .classpath
 *.iml
