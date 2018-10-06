@@ -62,17 +62,17 @@ public class HomeController {
 		ObjectNode objectNode1 = mapper.createObjectNode();
 
 
-		if(returned != null && returned.getPassword() != null && returned.getPassword().equals(user.getPassword()))
+		if(returned != null && returned.password != null && returned.password.equals(user.password))
 		{
 			objectNode1.put("response", "match");
 			arrayNode.add(objectNode1);
 		}
-		else if( returned != null && returned.getPassword() != null && !returned.getPassword().equals(user.getPassword()))
+		else if( returned != null && returned.password != null && !returned.password.equals(user.password))
 		{
 			objectNode1.put("response", "incorrect_pass");
 			arrayNode.add(objectNode1);
 		}
-		else if(returned == null || returned.getPassword() == null)
+		else if(returned == null || returned.password == null)
 		{
 			objectNode1.put("response", "null");
 			arrayNode.add(objectNode1);

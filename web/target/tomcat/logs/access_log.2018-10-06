@@ -1,9 +1,0 @@
-0:0:0:0:0:0:0:1 - - [06/Oct/2018:17:56:59 -0400] "GET / HTTP/1.1" 200 10965 http-bio-8080-exec-1 2535
-0:0:0:0:0:0:0:1 - - [06/Oct/2018:17:56:59 -0400] "GET /resources/style.css HTTP/1.1" 304 - http-bio-8080-exec-3 13
-0:0:0:0:0:0:0:1 - - [06/Oct/2018:17:56:59 -0400] "GET /resources/bootstrap-3.3.7-dist/css/bootstrap.min.css HTTP/1.1" 304 - http-bio-8080-exec-2 14
-0:0:0:0:0:0:0:1 - - [06/Oct/2018:17:56:59 -0400] "GET /resources/old.jpeg HTTP/1.1" 304 - http-bio-8080-exec-6 4
-0:0:0:0:0:0:0:1 - - [06/Oct/2018:17:56:59 -0400] "GET /resources/jquery-3.2.1.min.js HTTP/1.1" 304 - http-bio-8080-exec-4 11
-0:0:0:0:0:0:0:1 - - [06/Oct/2018:17:56:59 -0400] "GET /resources/bootstrap-3.3.7-dist/js/bootstrap.js HTTP/1.1" 304 - http-bio-8080-exec-5 18
-0:0:0:0:0:0:0:1 - - [06/Oct/2018:17:56:59 -0400] "GET /images/noise.jpg HTTP/1.1" 404 949 http-bio-8080-exec-9 2
-0:0:0:0:0:0:0:1 - - [06/Oct/2018:17:57:01 -0400] "GET / HTTP/1.1" 200 10965 http-bio-8080-exec-10 82
-0:0:0:0:0:0:0:1 - - [06/Oct/2018:17:57:01 -0400] "GET /images/noise.jpg HTTP/1.1" 404 949 http-bio-8080-exec-10 2
