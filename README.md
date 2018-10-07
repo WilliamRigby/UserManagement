@@ -9,14 +9,12 @@ tomcat7: run
 This will launch a local web server, using a maven plugin tomcat7-maven-plugin.
 This will allow you to set breakpoints and debug locally.
 
+When running locally, you must create these environment variables on your dev machine:
 
-When running locally, comment out these lines in MvcConfiguration.java:
+JDBC_DATABASE_URL : jdbc:postgresql://{server}:{port}/{db}?user={user}&password={password}&sslmode=require
+JDBC_DATABASE_USERNAME : {username}
+JDBC_DATABASE_PASSWORD : {password}
 
-String JDBC_DATABASE_URL = System.getenv("JDBC_DATABASE_URL");
-String JDBC_DATABASE_USERNAME = System.getenv("JDBC_DATABASE_USERNAME");
-String JDBC_DATABASE_PASSWORD = System.getenv("JDBC_DATABASE_PASSWORD");
+When deploying to prod, these vars will already exist for the prod database
 
-However, everytime you push to the heroku repo, make sure you uncomment them, because this is how we 
-set the DB configuration variables.  The way I get them for running locally is a bit hacky, but it
-works.
 

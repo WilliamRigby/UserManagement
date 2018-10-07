@@ -30,18 +30,18 @@ import javax.sql.DataSource;
 @EnableWebMvc
 public class MvcConfiguration implements WebMvcConfigurer {
 
+    @Override
+    public void addResourceHandlers(ResourceHandlerRegistry registry) {
+        registry.addResourceHandler("/resources/**").addResourceLocations("/resources/");
+        registry.addResourceHandler("/webjars/**").addResourceLocations("classpath:/META-INF/resources/webjars/");
+    }
+
 	@Bean
 	public ViewResolver getViewResolver(){
 		InternalResourceViewResolver resolver = new InternalResourceViewResolver();
 		resolver.setPrefix("/WEB-INF/views/");
 		resolver.setSuffix(".jsp");
 		return resolver;
-	}
-	
-	@Override
-	public void addResourceHandlers(ResourceHandlerRegistry registry) {
-		registry.addResourceHandler("/resources/**").addResourceLocations("/resources/");		
-		registry.addResourceHandler("/webjars/**").addResourceLocations("classpath:/META-INF/resources/webjars/");
 	}
 
     @Bean
@@ -85,6 +85,7 @@ public class MvcConfiguration implements WebMvcConfigurer {
 
     @Bean
     public HibernateExceptionTranslator hibernateExceptionTranslator(){
+
         return new HibernateExceptionTranslator();
     }
 
