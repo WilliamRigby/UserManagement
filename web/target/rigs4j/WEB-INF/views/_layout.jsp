@@ -2,10 +2,10 @@
 <%@ page import="com.rigatron.rigs4j.web.models.User"%>
 
 <head>
-	<link rel="stylesheet" href="<c:url value='/resources/bootstrap-3.3.7-dist/css/bootstrap.min.css'/>">
-	<link rel="stylesheet" href="<c:url value='/resources/style.css'/>">
-    <script src="<c:url value='/resources/jquery-3.2.1.min.js'/>"></script>
-    <script src="<c:url value='/resources/bootstrap-3.3.7-dist/js/bootstrap.js'/>"></script>
+    <link rel="stylesheet" href="<c:url value='/resources/style.css'/>">
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
 </head>
 
 <nav class="navbar navbar-inverse">
@@ -15,137 +15,26 @@
     </div>
     <ul class="nav navbar-nav">
       <li class="active"><a href="/">Home</a></li>
-      <li><a href="/aboutme/">About Me</a></li>
-      <li><a href="/interests/">Interests</a></li>
+      <c:if test="${userId != null}">
+          <li><a href="/restricted/">User Restricted</a></li>
+      </c:if>
     </ul>
     <ul class="nav navbar-nav navbar-right">
-      <button type="button" class="btn btn-default btn-lg" data-toggle="modal" data-target="#modalLogin">Login</button>
-      <button type="button" class="btn btn-default btn-lg" data-toggle="modal" data-target="#modalRegister">Register</button>
+        <c:choose>
+            <c:when test="${userId == null}">
+                <button type="button" class="btn btn-default btn-lg" data-toggle="modal" data-target="#modalLogin">Login</button>
+                <jsp:include page="/WEB-INF/views/_loginModal.jsp"></jsp:include>
+                <button type="button" class="btn btn-default btn-lg" data-toggle="modal" data-target="#modalRegister">Register</button>
+                <jsp:include page="/WEB-INF/views/_registerModal.jsp"></jsp:include>
+            </c:when>
+            <c:otherwise>
+                <button type="button" class="btn btn-default btn-lg" data-toggle="modal" data-target="#modalLogout">Logout</button>
+            </c:otherwise>
+        </c:choose>
     </ul>
   </div>
 </nav>
 
-<div id="modalLogin" class="modal fade" role="dialog">
-  <div class="modal-dialog modal-lg">
-    <div class="modal-content">
-      <div class="modal-header">
-        <button type="button" class="close" data-dismiss="modal">&times;</button>
-        <h4 class="modal-title">Login</h4>
-      </div>
-      <div class="modal-body">
-        <p>Login Credentials: </p>
-        <div class="form-group">
-          <label for="login_usr">Name:</label>
-          <input type="text" class="form-control" id="login_usr">
-        </div>
-        <div class="form-group">
-          <label for="login_pwd">Password:</label>
-          <input type="password" class="form-control" id="login_pwd">
-        </div>
-      </div>
-      <div class="modal-footer">
-        <button id='login_btnSubmit' type="button" class="btn btn-default" data-dismiss="modal">Submit</button>
-      </div>
-    </div>
-  </div>
-</div>
-
-<div id="modalRegister" class="modal fade" role="dialog">
-  <div class="modal-dialog modal-lg">
-    <div class="modal-content">
-      <div class="modal-header">
-        <button type="button" class="close" data-dismiss="modal">&times;</button>
-        <h4 class="modal-title">Register</h4>
-      </div>
-      <div class="modal-body">
-        <p>Register New User</p>
-        <div class="form-group">
-          <label for="register_usr">Name:</label>
-          <input type="text" class="form-control" id="register_usr">
-        </div>
-        <div class="form-group">
-          <label for="register_pwd">Password:</label>
-          <input type="password" class="form-control" id="register_pwd">
-        </div>
-      </div>
-      <div class="modal-footer">
-        <button id='register_btnSubmit' type="button" class="btn btn-default" data-dismiss="modal">Submit</button>
-      </div>
-    </div>
-  </div>
-</div>
-
 <body>
     <jsp:include page="/WEB-INF/views/${view}.jsp"></jsp:include>
 </body>
-
-<script type="text/javascript">
-
-    $(document).ready(function() {
-        $("#register_btnSubmit").click(function() {
-
-            var data = {};
-            var username = $("#register_usr").val();
-            var password = $("#register_pwd").val();
-            data["username"] = username;
-            data["password"] = password;
-
-            var json = JSON.stringify(data);
-
-            $.ajax({
-                type: "POST",
-                contentType: "application/json",
-                url: "/adduser/",
-                data: json,
-                dataType: 'json',
-                timeout: 600000,
-                success: function (data) {
-                    alert("ajax success")
-                },
-                error: function (e) {
-                    alert(e.responseText)
-                }
-            });
-        });
-    });
-
-    $(document).ready(function() {
-        $("#login_btnSubmit").click(function(){
-
-            var data = {}
-            var username = $("#login_usr").val();
-            var password = $("#login_pwd").val();
-            data["username"] = username;
-            data["password"] = password;
-
-            var json = JSON.stringify(data)
-
-            $.ajax({
-                type: "POST",
-                contentType: "application/json",
-                url: "login/",
-                data: json,
-                dataType: 'json',
-                timeout: 600000,
-                success: function (data) {
-
-                    var response = data[0]["response"];
-
-                    if(response.toString() == "match") {
-
-                        alert("You are now 'logged in'")
-                    } else if(response.toString() == "incorrect_pass") {
-                        alert("incorrect password")
-                    } else if(response.toString() == "null") {
-                        alert("500")
-                    }
-
-                },
-                error: function (e) {
-                    alert("There was an error")
-                }
-            });
-        });
-    });
-
-</script>

@@ -8,7 +8,7 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 public interface IUserService {
 
     User login(String username, String password) throws UsernameNotFoundException, PasswordNotMatched;
-    void createUser(User p);
+    void createUser(String username, String password);
     void updateUser(User p);
     List<User> getAllUsers();
     User getUserById(int id);

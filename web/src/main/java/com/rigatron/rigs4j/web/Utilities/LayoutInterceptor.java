@@ -1,12 +1,21 @@
 package com.rigatron.rigs4j.web.Utilities;
 
+import com.rigatron.rigs4j.BL.entities.User;
+import com.rigatron.rigs4j.BL.services.UserService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.handler.HandlerInterceptorAdapter;
 
+import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import java.util.Arrays;
+import java.util.Optional;
 
 public class LayoutInterceptor extends HandlerInterceptorAdapter {
+
+    @Autowired
+    private UserService userService;
 
     private static final String NO_LAYOUT = "noLayout:";
 
@@ -14,6 +23,14 @@ public class LayoutInterceptor extends HandlerInterceptorAdapter {
 
     @Override
     public void postHandle(HttpServletRequest request, HttpServletResponse response, Object handler, ModelAndView modelAndView) throws Exception {
+
+        String userId = readCookie(request, "userId");
+
+        if(userId != null) {
+            int id = Integer.decode(userId);
+            User user = userService.getUserById(id);
+            modelAndView.addObject("user", user);
+        }
 
         super.postHandle(request, response, handler, modelAndView);
 
@@ -37,5 +54,19 @@ public class LayoutInterceptor extends HandlerInterceptorAdapter {
             modelAndView.addObject("view", realViewName);
             modelAndView.setViewName(LAYOUT);
         }
+    }
+
+    private String readCookie(HttpServletRequest request, String key) {
+        Cookie[] cookies = request.getCookies();
+
+        if(cookies != null) {
+            for (Cookie c : cookies) {
+                if(c.getName() == key) {
+                    return c.getValue();
+                }
+            }
+        }
+
+        return null;
     }
 }
