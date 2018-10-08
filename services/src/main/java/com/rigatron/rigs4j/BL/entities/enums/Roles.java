@@ -1,4 +1,4 @@
-package com.rigatron.rigs4j.web.models.enums;
+package com.rigatron.rigs4j.BL.entities.enums;
 
 public enum Roles {
 
@@ -14,6 +14,7 @@ public enum Roles {
     };
 
     private int id;
+
     Roles(int value) {
 
         this.id = value;
@@ -23,3 +24,4 @@ public enum Roles {
         return this.id;
     }
 }
+

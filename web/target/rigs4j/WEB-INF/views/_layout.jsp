@@ -2,7 +2,8 @@
 <%@ page import="com.rigatron.rigs4j.web.models.User"%>
 
 <head>
-	<link rel='stylesheet' href="<c:url value='/resources/bootstrap-3.3.7-dist/css/bootstrap.min.css'/>">
+	<link rel="stylesheet" href="<c:url value='/resources/bootstrap-3.3.7-dist/css/bootstrap.min.css'/>">
+	<link rel="stylesheet" href="<c:url value='/resources/style.css'/>">
     <script src="<c:url value='/resources/jquery-3.2.1.min.js'/>"></script>
     <script src="<c:url value='/resources/bootstrap-3.3.7-dist/js/bootstrap.js'/>"></script>
 </head>
@@ -18,8 +19,6 @@
       <li><a href="/interests/">Interests</a></li>
     </ul>
     <ul class="nav navbar-nav navbar-right">
-      <!-- <li><a href="#" data-toggle="modal" data-target="#myModal"><span class="glyphicon glyphicon-user"></span> Sign Up</a></li> -->
-      <!-- <li><a href="#"><span class="glyphicon glyphicon-log-in"></span> Login</a></li> -->
       <button type="button" class="btn btn-default btn-lg" data-toggle="modal" data-target="#modalLogin">Login</button>
       <button type="button" class="btn btn-default btn-lg" data-toggle="modal" data-target="#modalRegister">Register</button>
     </ul>
@@ -28,7 +27,6 @@
 
 <div id="modalLogin" class="modal fade" role="dialog">
   <div class="modal-dialog modal-lg">
-    <!-- Modal content-->
     <div class="modal-content">
       <div class="modal-header">
         <button type="button" class="close" data-dismiss="modal">&times;</button>
@@ -54,7 +52,6 @@
 
 <div id="modalRegister" class="modal fade" role="dialog">
   <div class="modal-dialog modal-lg">
-    <!-- Modal content-->
     <div class="modal-content">
       <div class="modal-header">
         <button type="button" class="close" data-dismiss="modal">&times;</button>
@@ -78,24 +75,27 @@
   </div>
 </div>
 
+<body>
+    <jsp:include page="/WEB-INF/views/${view}.jsp"></jsp:include>
+</body>
+
 <script type="text/javascript">
 
-
     $(document).ready(function() {
-        $("#register_btnSubmit").click(function(){
+        $("#register_btnSubmit").click(function() {
 
-            var data = {}
+            var data = {};
             var username = $("#register_usr").val();
             var password = $("#register_pwd").val();
             data["username"] = username;
             data["password"] = password;
 
-            var json = JSON.stringify(data)
+            var json = JSON.stringify(data);
 
             $.ajax({
                 type: "POST",
                 contentType: "application/json",
-                url: "adduser/",
+                url: "/adduser/",
                 data: json,
                 dataType: 'json',
                 timeout: 600000,
@@ -103,7 +103,7 @@
                     alert("ajax success")
                 },
                 error: function (e) {
-                    alert("ajax error")
+                    alert(e.responseText)
                 }
             });
         });

@@ -20,7 +20,7 @@ public class UserRoleDAO implements IUserRoleDAO {
     @Override
     public void createUserRole(UserRole role) {
         Session session = this.sessionFactory.getCurrentSession();
-        session.persist(role);
+        session.save(role);
     }
 
     @Override
@@ -33,7 +33,7 @@ public class UserRoleDAO implements IUserRoleDAO {
     @Override
     public List<UserRole> getAllUserRoles() {
         Session session = this.sessionFactory.getCurrentSession();
-        return session.createQuery("from User").list();
+        return session.createQuery("from UserRole").list();
     }
 
     @Override

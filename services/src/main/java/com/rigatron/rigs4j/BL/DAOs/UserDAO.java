@@ -19,7 +19,7 @@ public class UserDAO implements IUserDAO {
     @Override
     public void createUser(User user) {
         Session session = this.sessionFactory.getCurrentSession();
-        session.persist(user);
+        session.save(user);
     }
 
     @Override
@@ -33,6 +33,12 @@ public class UserDAO implements IUserDAO {
     public List<User> getAllUsers() {
         Session session = this.sessionFactory.getCurrentSession();
         return session.createQuery("from User").list();
+    }
+
+    @Override
+    public User getUserByName(String username) {
+        Session session = this.sessionFactory.getCurrentSession();
+        return session.load(User.class, username);
     }
 
     @Override
