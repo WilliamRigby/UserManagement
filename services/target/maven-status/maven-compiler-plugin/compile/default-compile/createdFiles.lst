@@ -1,0 +1,14 @@
+com\rigatron\rigs4j\BL\DAOs\UserRoleDAO.class
+com\rigatron\rigs4j\BL\entities\enums\Roles$1.class
+com\rigatron\rigs4j\BL\DAOs\interfaces\IUserRoleDAO.class
+com\rigatron\rigs4j\BL\entities\User.class
+com\rigatron\rigs4j\BL\config\HibernateConfig.class
+com\rigatron\rigs4j\BL\DAOs\UserDAO.class
+com\rigatron\rigs4j\BL\services\interfaces\IUserService.class
+com\rigatron\rigs4j\BL\entities\enums\Roles$2.class
+com\rigatron\rigs4j\BL\entities\enums\Roles.class
+com\rigatron\rigs4j\BL\DAOs\interfaces\IUserDAO.class
+com\rigatron\rigs4j\BL\entities\exceptions\PasswordNotMatched.class
+com\rigatron\rigs4j\BL\services\UserService.class
+com\rigatron\rigs4j\BL\config\BusinessConfig.class
+com\rigatron\rigs4j\BL\entities\UserRole.class

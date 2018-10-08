@@ -4,18 +4,19 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
-    <groupId>com.rigatron</groupId>
-    <artifactId>rigs4j</artifactId>
-    <version>0.1.0</version>
-    <packaging>pom</packaging>
-
     <properties>
+        <maven.dependency.plugin.version>3.1.1</maven.dependency.plugin.version>
+        <webapp.runner.version>9.0.11.0</webapp.runner.version>
         <java.version>1.8</java.version>
         <spring.version>5.1.0.RELEASE</spring.version>
         <cglib.version>3.2.8</cglib.version>
         <jackson.version>2.9.7</jackson.version>
-        <jaxb.version>2.2.11</jaxb.version>
     </properties>
+
+    <groupId>com.rigatron</groupId>
+    <artifactId>rigs4j</artifactId>
+    <version>0.1.0</version>
+    <packaging>pom</packaging>
 
     <modules>
         <module>web</module>
@@ -36,7 +37,7 @@
                 <plugin>
                     <groupId>org.apache.maven.plugins</groupId>
                     <artifactId>maven-compiler-plugin</artifactId>
-                    <version>2.0.2</version>
+                    <version>3.8.0</version>
                     <configuration>
                         <source>${java.version}</source>
                         <target>${java.version}</target>
@@ -54,5 +55,57 @@
                 </plugin>
             </plugins>
         </pluginManagement>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-dependency-plugin</artifactId>
+                <version>${maven.dependency.plugin.version}</version>
+                <executions>
+                    <execution>
+                        <id>build-classpath</id>
+                        <phase>package</phase>
+                        <goals>
+                            <goal>build-classpath</goal>
+                        </goals>
+                        <configuration>
+                            <artifactItems>
+                                <artifactItem>
+                                    <groupId>com.rigatron</groupId>
+                                    <artifactId>rigs4j-web</artifactId>
+                                    <version>0.1.0</version>
+                                    <type>war</type>
+                                    <overWrite>true</overWrite>
+                                    <outputDirectory>/web/target/classes/com/rigatron/rigs4j/web/</outputDirectory>
+                                    <destFileName>web-cp.txt</destFileName>
+                                </artifactItem>
+                                <artifactItem>
+                                    <groupId>com.rigatron</groupId>
+                                    <artifactId>rigs4j-services</artifactId>
+                                    <version>0.1.0</version>
+                                    <type>jar</type>
+                                    <overWrite>true</overWrite>
+                                    <outputDirectory>/services/target/classes/com/rigatron/rigs4j/services/</outputDirectory>
+                                    <destFileName>services-cp.txt</destFileName>
+                                </artifactItem>
+                            </artifactItems>
+                        </configuration>
+                    </execution>
+                    <execution>
+                        <phase>package</phase>
+                        <goals><goal>copy</goal></goals>
+                        <configuration>
+                            <artifactItems>
+                                <artifactItem>
+                                    <groupId>com.github.jsimone</groupId>
+                                    <artifactId>webapp-runner</artifactId>
+                                    <version>${webapp.runner.version}</version>
+                                    <destFileName>webapp-runner.jar</destFileName>
+                                </artifactItem>
+                            </artifactItems>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+        </plugins>
     </build>
 </project>

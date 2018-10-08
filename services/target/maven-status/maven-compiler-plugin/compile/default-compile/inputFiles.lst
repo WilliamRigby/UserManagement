@@ -1,0 +1,12 @@
+C:\Users\wrigby\Documents\williamrigbyresume\services\src\main\java\com\rigatron\rigs4j\BL\entities\UserRole.java
+C:\Users\wrigby\Documents\williamrigbyresume\services\src\main\java\com\rigatron\rigs4j\BL\DAOs\interfaces\IUserRoleDAO.java
+C:\Users\wrigby\Documents\williamrigbyresume\services\src\main\java\com\rigatron\rigs4j\BL\DAOs\interfaces\IUserDAO.java
+C:\Users\wrigby\Documents\williamrigbyresume\services\src\main\java\com\rigatron\rigs4j\BL\entities\exceptions\PasswordNotMatched.java
+C:\Users\wrigby\Documents\williamrigbyresume\services\src\main\java\com\rigatron\rigs4j\BL\config\HibernateConfig.java
+C:\Users\wrigby\Documents\williamrigbyresume\services\src\main\java\com\rigatron\rigs4j\BL\config\BusinessConfig.java
+C:\Users\wrigby\Documents\williamrigbyresume\services\src\main\java\com\rigatron\rigs4j\BL\DAOs\UserRoleDAO.java
+C:\Users\wrigby\Documents\williamrigbyresume\services\src\main\java\com\rigatron\rigs4j\BL\entities\User.java
+C:\Users\wrigby\Documents\williamrigbyresume\services\src\main\java\com\rigatron\rigs4j\BL\services\UserService.java
+C:\Users\wrigby\Documents\williamrigbyresume\services\src\main\java\com\rigatron\rigs4j\BL\DAOs\UserDAO.java
+C:\Users\wrigby\Documents\williamrigbyresume\services\src\main\java\com\rigatron\rigs4j\BL\services\interfaces\IUserService.java
+C:\Users\wrigby\Documents\williamrigbyresume\services\src\main\java\com\rigatron\rigs4j\BL\entities\enums\Roles.java

@@ -1,0 +1,6 @@
+com\rigatron\rigs4j\web\config\MvcConfiguration.class
+com\rigatron\rigs4j\web\controller\HomeController.class
+com\rigatron\rigs4j\web\models\User.class
+com\rigatron\rigs4j\web\controller\InterestsController.class
+com\rigatron\rigs4j\web\controller\AboutMeController.class
+com\rigatron\rigs4j\web\Utilities\LayoutInterceptor.class
