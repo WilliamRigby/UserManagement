@@ -22,6 +22,7 @@ public class User {
     )
     public Set<UserRole> roles = new HashSet<>();
 
+    @Column(unique = true)
     public String username;
 
     public String password;
@@ -29,4 +30,8 @@ public class User {
     public Date createDate;
 
     public Date lastModifiedDate;
+
+    public String getUsername() {
+        return this.username;
+    }
 }

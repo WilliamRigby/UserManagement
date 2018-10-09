@@ -3,6 +3,9 @@ package com.rigatron.rigs4j.web.controller;
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
+
+import com.rigatron.rigs4j.web.Utilities.StateManager;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.stereotype.Controller;
@@ -12,6 +15,12 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 import com.rigatron.rigs4j.BL.services.interfaces.IUserService;
 import com.rigatron.rigs4j.web.models.User;
+
+import java.time.Duration;
+import java.time.Instant;
+import java.util.Date;
+import java.util.Map;
+import java.util.UUID;
 
 @Controller
 public class HomeController {
@@ -27,8 +36,14 @@ public class HomeController {
 		return model;
 	}
 
-	@RequestMapping(value="/adduser", method = RequestMethod.POST, consumes = MediaType.ALL_VALUE)
-	public ModelAndView Register(@ModelAttribute String username, @ModelAttribute String password) {
+	@RequestMapping(value="/register")
+	public ModelAndView Register() {
+
+		return new ModelAndView("register");
+	}
+
+	@RequestMapping(value="/adduser", method = RequestMethod.POST)
+	public ModelAndView AddUser(@RequestParam("username") String username, @RequestParam("password") String password) {
 
 		try {
             userService.createUser(username, password);
@@ -39,22 +54,25 @@ public class HomeController {
         }
 	}
 
-	@RequestMapping(value="/login", method = RequestMethod.POST)
-	public ModelAndView Login(@RequestBody User user, HttpServletRequest request, HttpServletResponse response) {
+    @RequestMapping(value="/login")
+    public ModelAndView Login() {
+
+        return new ModelAndView("login");
+    }
+
+	@RequestMapping(value="/loginrequest", method = RequestMethod.POST)
+	public ModelAndView LoginRequest(@RequestParam("username") String username, @RequestParam("password") String password, HttpServletRequest request, HttpServletResponse response) {
 
 	    try {
-            User result = MapUser(userService.login(user.username, user.password));
+            User result = MapUser(userService.login(username, password));
 
-			Cookie cookie = new Cookie("userId", ((Integer)user.id).toString());
-
-			cookie.setMaxAge(60);
-
-			response.addCookie(cookie);
+            String sessionId = StateManager.updateSessionCookie(request, response);
+            StateManager.updateSession(request, result, sessionId);
 
             return new ModelAndView("home", "user", result);
         }
         catch(Exception e) {
-	        return new ModelAndView("home");
+	        return new ModelAndView("home", "message", e.getMessage());
         }
 	}
 
@@ -79,4 +97,6 @@ public class HomeController {
 
         return user;
     }
+
+
 }

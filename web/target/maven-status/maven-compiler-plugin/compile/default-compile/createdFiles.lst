@@ -3,3 +3,4 @@ com\rigatron\rigs4j\web\controller\HomeController.class
 com\rigatron\rigs4j\web\controller\LoggedInController.class
 com\rigatron\rigs4j\web\models\User.class
 com\rigatron\rigs4j\web\Utilities\LayoutInterceptor.class
+com\rigatron\rigs4j\web\Utilities\StateManager.class

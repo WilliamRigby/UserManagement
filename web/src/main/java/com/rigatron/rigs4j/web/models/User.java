@@ -11,5 +11,6 @@ public class User {
     public int id;
     public String username;
     public String password;
-    Set<UserRole> roles = new HashSet<>();
+    public Set<UserRole> roles = new HashSet<>();
+    public Date cookieExpiry;
 }

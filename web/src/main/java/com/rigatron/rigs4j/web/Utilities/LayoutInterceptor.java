@@ -1,7 +1,7 @@
 package com.rigatron.rigs4j.web.Utilities;
 
-import com.rigatron.rigs4j.BL.entities.User;
 import com.rigatron.rigs4j.BL.services.UserService;
+import com.rigatron.rigs4j.web.models.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.handler.HandlerInterceptorAdapter;
@@ -9,8 +9,8 @@ import org.springframework.web.servlet.handler.HandlerInterceptorAdapter;
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import java.util.Arrays;
-import java.util.Optional;
+import javax.servlet.http.HttpSession;
+import java.util.Date;
 
 public class LayoutInterceptor extends HandlerInterceptorAdapter {
 
@@ -24,17 +24,24 @@ public class LayoutInterceptor extends HandlerInterceptorAdapter {
     @Override
     public void postHandle(HttpServletRequest request, HttpServletResponse response, Object handler, ModelAndView modelAndView) throws Exception {
 
-        String userId = readCookie(request, "userId");
+        Cookie sessionCookie = StateManager.readCookie(request);
 
-        if(userId != null) {
-            int id = Integer.decode(userId);
-            User user = userService.getUserById(id);
-            modelAndView.addObject("user", user);
+        if(sessionCookie != null) {
+
+            User user = StateManager.getUserFromSession(request);
+
+            if(user != null && user.cookieExpiry.after(new Date())) {
+                modelAndView.addObject("user", user);
+            }
+            else if(user != null && !user.cookieExpiry.after(new Date())) {
+                StateManager.deleteUserFromSession(request);
+
+            }
         }
 
         super.postHandle(request, response, handler, modelAndView);
 
-        String originalView = modelAndView.getViewName();
+        String originalView = modelAndView != null ? modelAndView.getViewName() : null;
 
         if (originalView != null && !originalView.startsWith("redirect:")) {
             includeLayout(modelAndView, originalView);

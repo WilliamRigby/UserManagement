@@ -52,7 +52,7 @@ public class UserService implements IUserService {
 
         User user = new User();
         user.username = username;
-        user.password = BCrypt.hashpw(user.password, BCrypt.gensalt());
+        user.password = BCrypt.hashpw(password, BCrypt.gensalt());
         user.createDate = new Date();
         user.lastModifiedDate = new Date();
 

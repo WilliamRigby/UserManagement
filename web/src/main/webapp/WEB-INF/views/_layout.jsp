@@ -15,17 +15,15 @@
     </div>
     <ul class="nav navbar-nav">
       <li class="active"><a href="/">Home</a></li>
-      <c:if test="${userId != null}">
+      <c:if test="${user != null}">
           <li><a href="/restricted/">User Restricted</a></li>
       </c:if>
     </ul>
     <ul class="nav navbar-nav navbar-right">
         <c:choose>
-            <c:when test="${userId == null}">
-                <button type="button" class="btn btn-default btn-lg" data-toggle="modal" data-target="#modalLogin">Login</button>
-                <jsp:include page="/WEB-INF/views/_loginModal.jsp"></jsp:include>
-                <button type="button" class="btn btn-default btn-lg" data-toggle="modal" data-target="#modalRegister">Register</button>
-                <jsp:include page="/WEB-INF/views/_registerModal.jsp"></jsp:include>
+            <c:when test="${user == null}">
+                <button type="button" class="btn btn-default btn-lg" onclick="window.location.href='/login'">Login</button>
+                <button type="button" class="btn btn-default btn-lg" onclick="window.location.href='/register'">Register</button>
             </c:when>
             <c:otherwise>
                 <button type="button" class="btn btn-default btn-lg" data-toggle="modal" data-target="#modalLogout">Logout</button>
