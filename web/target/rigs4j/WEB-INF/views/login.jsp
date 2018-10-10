@@ -1,3 +1,4 @@
+<%@ page session="false" %>
 <form action="/loginrequest" method="post" enctype="application/x-www-form-urlencoded">
 
     <p>Login</p>

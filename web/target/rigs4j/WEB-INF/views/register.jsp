@@ -1,3 +1,5 @@
+<%@ page session="false" %>
+
 <form action="/adduser" method="post" enctype="application/x-www-form-urlencoded">
 
     <p>Register New User</p>

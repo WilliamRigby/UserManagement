@@ -33,7 +33,7 @@ public class StateManager {
 
     public static void updateSession(HttpServletRequest request, User user, String sessionId) {
 
-        HttpSession session = request.getSession(false);
+        HttpSession session = request.getSession(true);
 
         Instant minuteFromNow = Instant.now().plus(Duration.ofMinutes(2));
 
@@ -57,7 +57,7 @@ public class StateManager {
     }
 
     public static User getUserFromSession(HttpServletRequest request) {
-        HttpSession session = request.getSession();
+        HttpSession session = request.getSession(false);
 
         Cookie cookie = getCookie(request);
 
