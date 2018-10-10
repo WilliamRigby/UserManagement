@@ -10,16 +10,21 @@ import javax.servlet.http.HttpSession;
 import java.time.Duration;
 import java.time.Instant;
 import java.util.Date;
+import java.util.UUID;
 
 public class StateManager {
 
-    private static final String key = "JSESSIONID";
+    private static final String key = "TOKEN";
 
     public static String updateSessionCookie(HttpServletRequest request, HttpServletResponse response) {
 
-        Cookie cookie = readCookie(request);
+        Cookie cookie = getCookie(request);
 
-        cookie.setMaxAge(60);
+        if(cookie == null) {
+            cookie = new Cookie(key, UUID.randomUUID().toString());
+        }
+
+        cookie.setMaxAge(120);
 
         response.addCookie(cookie);
 
@@ -30,19 +35,19 @@ public class StateManager {
 
         HttpSession session = request.getSession(false);
 
-        Instant minuteFromNow = Instant.now().plus(Duration.ofMinutes(1));
+        Instant minuteFromNow = Instant.now().plus(Duration.ofMinutes(2));
 
         user.cookieExpiry = Date.from(minuteFromNow);
 
         session.setAttribute(sessionId, user);
     }
 
-    public static Cookie readCookie(HttpServletRequest request) {
+    public static Cookie getCookie(HttpServletRequest request) {
         Cookie[] cookies = request.getCookies();
 
         if(cookies != null) {
             for (Cookie c : cookies) {
-                if(c.getName() == key) {
+                if(c.getName().equals(key)) {
                     return c;
                 }
             }
@@ -54,7 +59,9 @@ public class StateManager {
     public static User getUserFromSession(HttpServletRequest request) {
         HttpSession session = request.getSession();
 
-        return (User)session.getAttribute(key);
+        Cookie cookie = getCookie(request);
+
+        return (User)session.getAttribute(cookie.getValue());
     }
 
     public static void deleteUserFromSession(HttpServletRequest request) {

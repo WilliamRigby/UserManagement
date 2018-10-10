@@ -1,26 +1,14 @@
 package com.rigatron.rigs4j.web.controller;
 
-import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
-
 import com.rigatron.rigs4j.web.Utilities.StateManager;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.MediaType;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.ModelMap;
-import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 import com.rigatron.rigs4j.BL.services.interfaces.IUserService;
 import com.rigatron.rigs4j.web.models.User;
-
-import java.time.Duration;
-import java.time.Instant;
-import java.util.Date;
-import java.util.Map;
-import java.util.UUID;
 
 @Controller
 public class HomeController {
@@ -30,16 +18,17 @@ public class HomeController {
 
 	@RequestMapping(value="/")
 	public ModelAndView Index() {
-
-		ModelAndView model = new ModelAndView("home");
-
-		return model;
+		return new ModelAndView("home");
 	}
 
 	@RequestMapping(value="/register")
 	public ModelAndView Register() {
-
 		return new ModelAndView("register");
+	}
+
+	@RequestMapping(value="/login")
+	public ModelAndView Login() {
+		return new ModelAndView("login");
 	}
 
 	@RequestMapping(value="/adduser", method = RequestMethod.POST)
@@ -54,11 +43,6 @@ public class HomeController {
         }
 	}
 
-    @RequestMapping(value="/login")
-    public ModelAndView Login() {
-
-        return new ModelAndView("login");
-    }
 
 	@RequestMapping(value="/loginrequest", method = RequestMethod.POST)
 	public ModelAndView LoginRequest(@RequestParam("username") String username, @RequestParam("password") String password, HttpServletRequest request, HttpServletResponse response) {

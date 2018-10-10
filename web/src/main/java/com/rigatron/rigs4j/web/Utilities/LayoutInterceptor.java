@@ -24,7 +24,7 @@ public class LayoutInterceptor extends HandlerInterceptorAdapter {
     @Override
     public void postHandle(HttpServletRequest request, HttpServletResponse response, Object handler, ModelAndView modelAndView) throws Exception {
 
-        Cookie sessionCookie = StateManager.readCookie(request);
+        Cookie sessionCookie = StateManager.getCookie(request);
 
         if(sessionCookie != null) {
 
@@ -35,7 +35,6 @@ public class LayoutInterceptor extends HandlerInterceptorAdapter {
             }
             else if(user != null && !user.cookieExpiry.after(new Date())) {
                 StateManager.deleteUserFromSession(request);
-
             }
         }
 
