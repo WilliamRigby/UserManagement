@@ -55,57 +55,5 @@
                 </plugin>
             </plugins>
         </pluginManagement>
-        <plugins>
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-dependency-plugin</artifactId>
-                <version>${maven.dependency.plugin.version}</version>
-                <executions>
-                    <execution>
-                        <id>build-classpath</id>
-                        <phase>package</phase>
-                        <goals>
-                            <goal>build-classpath</goal>
-                        </goals>
-                        <configuration>
-                            <artifactItems>
-                                <artifactItem>
-                                    <groupId>com.rigatron</groupId>
-                                    <artifactId>rigs4j-web</artifactId>
-                                    <version>0.1.0</version>
-                                    <type>war</type>
-                                    <overWrite>true</overWrite>
-                                    <outputDirectory>/web/target/classes/com/rigatron/rigs4j/web/</outputDirectory>
-                                    <destFileName>web-cp.txt</destFileName>
-                                </artifactItem>
-                                <artifactItem>
-                                    <groupId>com.rigatron</groupId>
-                                    <artifactId>rigs4j-services</artifactId>
-                                    <version>0.1.0</version>
-                                    <type>jar</type>
-                                    <overWrite>true</overWrite>
-                                    <outputDirectory>/services/target/classes/com/rigatron/rigs4j/services/</outputDirectory>
-                                    <destFileName>services-cp.txt</destFileName>
-                                </artifactItem>
-                            </artifactItems>
-                        </configuration>
-                    </execution>
-                    <execution>
-                        <phase>package</phase>
-                        <goals><goal>copy</goal></goals>
-                        <configuration>
-                            <artifactItems>
-                                <artifactItem>
-                                    <groupId>com.github.jsimone</groupId>
-                                    <artifactId>webapp-runner</artifactId>
-                                    <version>${webapp.runner.version}</version>
-                                    <destFileName>webapp-runner.jar</destFileName>
-                                </artifactItem>
-                            </artifactItems>
-                        </configuration>
-                    </execution>
-                </executions>
-            </plugin>
-        </plugins>
     </build>
 </project>
