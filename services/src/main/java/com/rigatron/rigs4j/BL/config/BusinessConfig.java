@@ -1,6 +1,7 @@
 package com.rigatron.rigs4j.BL.config;
 
 import com.rigatron.rigs4j.BL.DAOs.UserDAO;
+import com.rigatron.rigs4j.BL.DAOs.UserDetailsServiceDAO;
 import com.rigatron.rigs4j.BL.DAOs.UserRoleDAO;
 import com.rigatron.rigs4j.BL.DAOs.interfaces.IUserDAO;
 import com.rigatron.rigs4j.BL.DAOs.interfaces.IUserRoleDAO;
@@ -11,6 +12,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.orm.hibernate5.LocalSessionFactoryBean;
+import org.springframework.security.core.userdetails.UserDetailsService;
 
 @Configuration
 public class BusinessConfig {
@@ -21,6 +23,15 @@ public class BusinessConfig {
     @Bean
     public IUserDAO userDAO() {
         UserDAO dao =  new UserDAO();
+
+        dao.setSessionFactory(sessionFactory.getObject());
+
+        return dao;
+    }
+
+    @Bean
+    public UserDetailsService userDetailsDAO() {
+        UserDetailsServiceDAO dao =  new UserDetailsServiceDAO();
 
         dao.setSessionFactory(sessionFactory.getObject());
 

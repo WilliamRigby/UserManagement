@@ -1,8 +1,6 @@
 package com.rigatron.rigs4j.web.Utilities;
 
 import com.rigatron.rigs4j.web.models.User;
-import org.hibernate.Session;
-
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;

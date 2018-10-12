@@ -1,24 +1,14 @@
 package com.rigatron.rigs4j.BL.DAOs;
 
 import java.util.List;
-import java.util.stream.Stream;
-
-import org.hibernate.Criteria;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
-import org.hibernate.criterion.Expression;
-import org.hibernate.query.Query;
 import org.springframework.stereotype.Repository;
 import com.rigatron.rigs4j.BL.DAOs.interfaces.IUserDAO;
 import com.rigatron.rigs4j.BL.entities.User;
-
-import javax.persistence.EntityManager;
 import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
-import javax.persistence.criteria.ParameterExpression;
 import javax.persistence.criteria.Root;
-import javax.persistence.metamodel.EntityType;
-import javax.persistence.metamodel.Metamodel;
 
 @Repository
 public class UserDAO implements IUserDAO {

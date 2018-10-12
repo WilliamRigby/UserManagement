@@ -10,6 +10,8 @@ import org.springframework.web.servlet.ModelAndView;
 import com.rigatron.rigs4j.BL.services.interfaces.IUserService;
 import com.rigatron.rigs4j.web.models.User;
 
+import java.io.IOException;
+
 @Controller
 public class HomeController {
 
@@ -26,9 +28,23 @@ public class HomeController {
 		return new ModelAndView("register");
 	}
 
+	/*
 	@RequestMapping(value="/login")
-	public ModelAndView Login() {
-		return new ModelAndView("login");
+	public ModelAndView Login(@RequestParam(value = "error",required = false) String error,
+							  @RequestParam(value = "logout",	required = false) String logout) {
+
+		ModelAndView model = new ModelAndView();
+		if (error != null) {
+			model.addObject("error", "Invalid Credentials provided.");
+		}
+
+		if (logout != null) {
+			model.addObject("message", "Logged out from JournalDEV successfully.");
+		}
+
+		model.setViewName("login");
+
+		return model;
 	}
 
 	@RequestMapping(value="/adduser", method = RequestMethod.POST)
@@ -58,6 +74,13 @@ public class HomeController {
         catch(Exception e) {
 	        return new ModelAndView("home", "message", e.getMessage());
         }
+	}
+
+	*/
+
+	@RequestMapping(value="/restricted")
+	public ModelAndView test(HttpServletResponse response) throws IOException {
+		return new ModelAndView("loggedIn");
 	}
 
 	private User MapUser(com.rigatron.rigs4j.BL.entities.User u) {

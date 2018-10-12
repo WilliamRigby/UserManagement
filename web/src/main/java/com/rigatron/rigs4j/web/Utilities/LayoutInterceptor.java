@@ -5,11 +5,9 @@ import com.rigatron.rigs4j.web.models.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.handler.HandlerInterceptorAdapter;
-
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 import java.util.Date;
 
 public class LayoutInterceptor extends HandlerInterceptorAdapter {
@@ -23,6 +21,12 @@ public class LayoutInterceptor extends HandlerInterceptorAdapter {
 
     @Override
     public void postHandle(HttpServletRequest request, HttpServletResponse response, Object handler, ModelAndView modelAndView) throws Exception {
+
+        super.postHandle(request, response, handler, modelAndView);
+
+        if(modelAndView == null) {
+            return;
+        }
 
         Cookie sessionCookie = StateManager.getCookie(request);
 
@@ -38,9 +42,7 @@ public class LayoutInterceptor extends HandlerInterceptorAdapter {
             }
         }
 
-        super.postHandle(request, response, handler, modelAndView);
-
-        String originalView = modelAndView != null ? modelAndView.getViewName() : null;
+        String originalView = modelAndView.getViewName();
 
         if (originalView != null && !originalView.startsWith("redirect:")) {
             includeLayout(modelAndView, originalView);

@@ -1,6 +1,9 @@
+com\rigatron\rigs4j\web\controller\LoginController.class
+com\rigatron\rigs4j\web\models\User.class
+com\rigatron\rigs4j\web\config\SpringMVCWebAppInitializer.class
+com\rigatron\rigs4j\web\config\SecurityConfig.class
+com\rigatron\rigs4j\web\Utilities\StateManager.class
 com\rigatron\rigs4j\web\config\MvcConfiguration.class
 com\rigatron\rigs4j\web\controller\HomeController.class
-com\rigatron\rigs4j\web\controller\LoggedInController.class
-com\rigatron\rigs4j\web\models\User.class
 com\rigatron\rigs4j\web\Utilities\LayoutInterceptor.class
-com\rigatron\rigs4j\web\Utilities\StateManager.class
+com\rigatron\rigs4j\web\config\SecurityWebApplicationInitializer.class
