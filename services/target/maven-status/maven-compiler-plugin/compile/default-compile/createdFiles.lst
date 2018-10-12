@@ -1,4 +1,3 @@
-com\rigatron\rigs4j\BL\DAOs\UserDetailsServiceDAO.class
 com\rigatron\rigs4j\BL\DAOs\UserRoleDAO.class
 com\rigatron\rigs4j\BL\entities\enums\Roles$1.class
 com\rigatron\rigs4j\BL\DAOs\interfaces\IUserRoleDAO.class

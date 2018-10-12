@@ -8,7 +8,7 @@ public class SpringMVCWebAppInitializer extends AbstractAnnotationConfigDispatch
 
     @Override
     protected Class<?>[] getRootConfigClasses() {
-        return new Class[] { MvcConfiguration.class, BusinessConfig.class, HibernateConfig.class, SecurityConfig.class };
+        return new Class[] { HibernateConfig.class, BusinessConfig.class, SecurityConfig.class, MvcConfiguration.class };
     }
 
     @Override

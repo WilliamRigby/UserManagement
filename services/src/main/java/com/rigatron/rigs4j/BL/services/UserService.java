@@ -8,6 +8,7 @@ import com.rigatron.rigs4j.BL.entities.User;
 import com.rigatron.rigs4j.BL.entities.UserRole;
 import com.rigatron.rigs4j.BL.entities.enums.Roles;
 import com.rigatron.rigs4j.BL.entities.exceptions.PasswordNotMatched;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -18,6 +19,8 @@ import com.rigatron.rigs4j.BL.services.interfaces.IUserService;
 @Service
 public class UserService implements IUserService {
 
+    @Autowired
+    private BCryptPasswordEncoder encoder;
     private IUserDAO userDAO;
     private IUserRoleDAO roleDAO;
 
@@ -30,29 +33,11 @@ public class UserService implements IUserService {
     }
 
     @Override
-    @Transactional(readOnly=true)
-    public User login(String username, String password) throws UsernameNotFoundException, PasswordNotMatched {
-
-        User user = this.userDAO.getUserByName(username);
-
-        if(user == null) {
-            throw new UsernameNotFoundException("Username not found");
-        }
-
-        if (!BCrypt.checkpw(password, user.password)) {
-            throw new PasswordNotMatched();
-        }
-
-        return user;
-    }
-
-    @Override
-    @Transactional
     public void createUser(String username, String password) {
 
         User user = new User();
         user.username = username;
-        user.password = BCrypt.hashpw(password, BCrypt.gensalt());
+        user.password = encoder.encode(password);
         user.createDate = new Date();
         user.lastModifiedDate = new Date();
 
@@ -68,25 +53,21 @@ public class UserService implements IUserService {
     }
 
     @Override
-    @Transactional
     public void updateUser(User user) {
         this.userDAO.updateUser(user);
     }
 
     @Override
-    @Transactional
     public List<User> getAllUsers() {
         return this.userDAO.getAllUsers();
     }
 
     @Override
-    @Transactional
     public User getUserById(int id) {
         return this.userDAO.getUserById(id);
     }
 
     @Override
-    @Transactional
     public void deleteUserById(int id) {
         this.userDAO.deleteUserById(id);
     }

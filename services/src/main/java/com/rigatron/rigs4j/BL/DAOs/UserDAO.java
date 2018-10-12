@@ -1,17 +1,26 @@
 package com.rigatron.rigs4j.BL.DAOs;
 
 import java.util.List;
+
+import com.rigatron.rigs4j.BL.entities.SpringUserDetails;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
+import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.core.userdetails.UserDetailsService;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Repository;
 import com.rigatron.rigs4j.BL.DAOs.interfaces.IUserDAO;
 import com.rigatron.rigs4j.BL.entities.User;
+import org.springframework.transaction.annotation.Transactional;
+
+import javax.persistence.NoResultException;
 import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Root;
 
 @Repository
-public class UserDAO implements IUserDAO {
+@Transactional
+public class UserDAO implements IUserDAO, UserDetailsService {
 
     private SessionFactory sessionFactory;
 
@@ -38,6 +47,13 @@ public class UserDAO implements IUserDAO {
         return session.createQuery("from User").list();
     }
 
+
+    @Override
+    public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
+        User user = getUserByName(username);
+        return (user != null) ? new SpringUserDetails(user) : null;
+    }
+
     @Override
     public User getUserByName(String username) {
         Session session = this.sessionFactory.getCurrentSession();
@@ -50,9 +66,12 @@ public class UserDAO implements IUserDAO {
 
         q.select(c).where(cb.equal(c.get("username"), username));
 
-        List<User> users = session.createQuery(q).getResultList();
-
-        return users.get(0);
+        try {
+            return session.createQuery(q).getSingleResult();
+        }
+        catch(NoResultException e) {
+            return null;
+        }
     }
 
     @Override

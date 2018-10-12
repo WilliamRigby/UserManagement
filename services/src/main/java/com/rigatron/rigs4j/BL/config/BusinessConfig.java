@@ -1,49 +1,40 @@
 package com.rigatron.rigs4j.BL.config;
 
 import com.rigatron.rigs4j.BL.DAOs.UserDAO;
-import com.rigatron.rigs4j.BL.DAOs.UserDetailsServiceDAO;
 import com.rigatron.rigs4j.BL.DAOs.UserRoleDAO;
 import com.rigatron.rigs4j.BL.DAOs.interfaces.IUserDAO;
 import com.rigatron.rigs4j.BL.DAOs.interfaces.IUserRoleDAO;
 import com.rigatron.rigs4j.BL.services.UserService;
 import com.rigatron.rigs4j.BL.services.interfaces.IUserService;
-import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.orm.hibernate5.LocalSessionFactoryBean;
 import org.springframework.security.core.userdetails.UserDetailsService;
 
 @Configuration
 public class BusinessConfig {
 
     @Autowired
-    private LocalSessionFactoryBean sessionFactory;
+    private HibernateConfig hibernateConfig;
 
     @Bean
     public IUserDAO userDAO() {
         UserDAO dao =  new UserDAO();
-
-        dao.setSessionFactory(sessionFactory.getObject());
-
+        dao.setSessionFactory(hibernateConfig.sessionFactory().getObject());
         return dao;
     }
 
     @Bean
     public UserDetailsService userDetailsDAO() {
-        UserDetailsServiceDAO dao =  new UserDetailsServiceDAO();
-
-        dao.setSessionFactory(sessionFactory.getObject());
-
+        UserDAO dao =  new UserDAO();
+        dao.setSessionFactory(hibernateConfig.sessionFactory().getObject());
         return dao;
     }
 
     @Bean
     public IUserRoleDAO userRoleDAO() {
         UserRoleDAO dao =  new UserRoleDAO();
-
-        dao.setSessionFactory(sessionFactory.getObject());
-
+        dao.setSessionFactory(hibernateConfig.sessionFactory().getObject());
         return dao;
     }
 

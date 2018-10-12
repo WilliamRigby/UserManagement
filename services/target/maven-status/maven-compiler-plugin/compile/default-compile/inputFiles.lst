@@ -8,7 +8,6 @@ C:\Users\wrigby\Documents\williamrigbyresume\services\src\main\java\com\rigatron
 C:\Users\wrigby\Documents\williamrigbyresume\services\src\main\java\com\rigatron\rigs4j\BL\services\UserService.java
 C:\Users\wrigby\Documents\williamrigbyresume\services\src\main\java\com\rigatron\rigs4j\BL\services\interfaces\IUserService.java
 C:\Users\wrigby\Documents\williamrigbyresume\services\src\main\java\com\rigatron\rigs4j\BL\entities\enums\Roles.java
-C:\Users\wrigby\Documents\williamrigbyresume\services\src\main\java\com\rigatron\rigs4j\BL\DAOs\UserDetailsServiceDAO.java
 C:\Users\wrigby\Documents\williamrigbyresume\services\src\main\java\com\rigatron\rigs4j\BL\DAOs\interfaces\IUserDAO.java
 C:\Users\wrigby\Documents\williamrigbyresume\services\src\main\java\com\rigatron\rigs4j\BL\entities\SpringUserDetails.java
 C:\Users\wrigby\Documents\williamrigbyresume\services\src\main\java\com\rigatron\rigs4j\BL\DAOs\UserDAO.java

@@ -1,6 +1,6 @@
 <%@ page session="false" %>
 
-<form action="/adduser" method="post" enctype="application/x-www-form-urlencoded">
+<form action="/adduser" method="POST">
 
     <p>Register New User</p>
     <div class="form-group">
@@ -13,4 +13,5 @@
     </div>
 
     <input type="submit" class="btn btn-default" data-dismiss="modal" value="submit">
+    <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
 </form>

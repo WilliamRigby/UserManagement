@@ -56,6 +56,7 @@ public class HibernateConfig {
     public HibernateTransactionManager transactionManager(LocalSessionFactoryBean sessionFactory) {
 
         HibernateTransactionManager txManager = new HibernateTransactionManager();
+
         txManager.setSessionFactory(sessionFactory.getObject());
 
         return txManager;

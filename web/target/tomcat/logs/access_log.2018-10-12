@@ -1,4 +1,0 @@
-0:0:0:0:0:0:0:1 - - [12/Oct/2018:14:17:27 -0400] "GET /login HTTP/1.1" 200 2029 http-bio-8080-exec-1 1404
-0:0:0:0:0:0:0:1 - - [12/Oct/2018:14:17:27 -0400] "GET /resources/style.css HTTP/1.1" 200 1762 http-bio-8080-exec-3 26
-0:0:0:0:0:0:0:1 - - [12/Oct/2018:14:18:56 -0400] "GET /login HTTP/1.1" 200 2029 http-bio-8080-exec-1 369
-0:0:0:0:0:0:0:1 - - [12/Oct/2018:14:18:56 -0400] "GET /resources/style.css HTTP/1.1" 200 1762 http-bio-8080-exec-3 35
