@@ -1,7 +1,6 @@
 com\rigatron\rigs4j\web\models\User.class
 com\rigatron\rigs4j\web\config\SpringMVCWebAppInitializer.class
 com\rigatron\rigs4j\web\config\SecurityConfig.class
-com\rigatron\rigs4j\web\Utilities\StateManager.class
 com\rigatron\rigs4j\web\config\MvcConfiguration.class
 com\rigatron\rigs4j\web\controller\AccountController.class
 com\rigatron\rigs4j\web\controller\HomeController.class

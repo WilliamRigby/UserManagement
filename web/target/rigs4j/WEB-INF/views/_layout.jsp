@@ -1,6 +1,5 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%@ page import="com.rigatron.rigs4j.web.models.User" %>
-<%@ page session="false" %>
+<%@ taglib prefix="security" uri="http://www.springframework.org/security/tags" %>
 
 <head>
     <link rel="stylesheet" href="<c:url value='/resources/style.css'/>">
@@ -15,21 +14,19 @@
       <a class="navbar-brand" href="/">Rigby4j</a>
     </div>
     <ul class="nav navbar-nav">
-      <li class="active"><a href="/">Home</a></li>
-      <c:if test="${user != null}">
-          <li><a href="/restricted/">User Restricted</a></li>
-      </c:if>
+    <li class="active"><a href="/">Home</a></li>
+        <security:authorize access="isAuthenticated()">
+            <li><a href="/restricted/">User Restricted</a></li>
+        </security:authorize>
     </ul>
     <ul class="nav navbar-nav navbar-right">
-        <c:choose>
-            <c:when test="${user == null}">
-                <button type="button" class="btn btn-default btn-lg" onclick="window.location.href='/login'">Login</button>
-                <button type="button" class="btn btn-default btn-lg" onclick="window.location.href='/register'">Register</button>
-            </c:when>
-            <c:otherwise>
-                <button type="button" class="btn btn-default btn-lg" data-toggle="modal" data-target="#modalLogout">Logout</button>
-            </c:otherwise>
-        </c:choose>
+        <security:authorize access="isAuthenticated()">
+            <button type="button" class="btn btn-default btn-lg" onclick="window.location.href='/logout'">Logout</button>
+        </security:authorize>
+        <security:authorize access="!isAuthenticated()">
+            <button type="button" class="btn btn-default btn-lg" onclick="window.location.href='/login'">Login</button>
+            <button type="button" class="btn btn-default btn-lg" onclick="window.location.href='/register'">Register</button>
+        </security:authorize>
     </ul>
   </div>
 </nav>
