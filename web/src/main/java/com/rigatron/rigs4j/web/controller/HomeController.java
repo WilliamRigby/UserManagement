@@ -10,24 +10,21 @@ import java.io.IOException;
 public class HomeController {
 
 	@RequestMapping(value= {"/", "/home"})
-	public ModelAndView Index(@RequestParam(value = "registered", required = false) boolean registered,
-							  @RequestParam(value = "loggedin", required = false) boolean loggedin,
-							  @RequestParam(value = "logout", required = false) boolean logout) {
+	public ModelAndView Index(@RequestParam(value = "registered", required = false) String registered,
+							  @RequestParam(value = "loggedin", required = false) String loggedin,
+							  @RequestParam(value = "logout", required = false) String logout) {
 
 		ModelAndView model = new ModelAndView("home");
-		String message = null;
 
-		if(registered == true) {
-			message = "Thank you for registering.  Please log in now.";
+		if(registered != null) {
+			model.addObject("message", "Thank you for registering.  Please log in now.");
 		}
-		else if(loggedin == true) {
-			message = "You have successfully logged in!";
+		else if(loggedin != null) {
+			model.addObject("message", "You have successfully logged in!");
 		}
-		else if(logout == true) {
-			message = "You have been successfully logged out!";
+		else if(logout != null) {
+			model.addObject("message", "You have been successfully logged out!");
 		}
-
-		model.addObject("message", message);
 
 		return model;
 	}

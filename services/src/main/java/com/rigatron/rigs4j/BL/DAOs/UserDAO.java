@@ -40,7 +40,6 @@ public class UserDAO implements IUserDAO, UserDetailsService {
         session.update(user);
     }
 
-    @SuppressWarnings("unchecked")
     @Override
     public List<User> getAllUsers() {
         Session session = this.sessionFactory.getCurrentSession();
@@ -50,12 +49,17 @@ public class UserDAO implements IUserDAO, UserDetailsService {
 
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-        User user = getUserByName(username);
-        return (user != null) ? new SpringUserDetails(user) : null;
+        try {
+            User user = getUserByName(username);
+            return new SpringUserDetails(user);
+        }
+        catch(NoResultException e) {
+            throw new UsernameNotFoundException(e.getMessage());
+        }
     }
 
     @Override
-    public User getUserByName(String username) {
+    public User getUserByName(String username) throws NoResultException {
         Session session = this.sessionFactory.getCurrentSession();
 
         CriteriaBuilder cb = session.getCriteriaBuilder();
@@ -66,12 +70,7 @@ public class UserDAO implements IUserDAO, UserDetailsService {
 
         q.select(c).where(cb.equal(c.get("username"), username));
 
-        try {
-            return session.createQuery(q).getSingleResult();
-        }
-        catch(NoResultException e) {
-            return null;
-        }
+        return session.createQuery(q).getSingleResult();
     }
 
     @Override

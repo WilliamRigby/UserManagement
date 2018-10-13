@@ -1,19 +1,21 @@
 
 <c:if test="${not empty errorMessage}"><div style="color:red; font-weight: bold; margin: 30px 0px;">${errorMessage}</div></c:if>
 
-<form name='login' action="/login" method='POST'>
-    <table>
-        <tr>
-            <td>UserName:</td>
-            <td><input type='text' name='username' value=''></td>
-        </tr>
-        <tr>
-            <td>Password:</td>
-            <td><input type='password' name='password' /></td>
-        </tr>
-        <tr>
-            <td colspan='2'><input name="submit" type="submit" value="submit" /></td>
-        </tr>
-    </table>
-    <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
-</form>
+<div class="row">
+    <div class="col-xs-4" style="margin-left: 50px">
+        <form action="/login" method="POST">
+            <p>Login</p>
+            <div class="form-group">
+                <label for="username">Username:</label>
+                <input type="text" class="form-control" name="username">
+            </div>
+            <div class="form-group">
+                <label for="password">Password:</label>
+                <input type="password" class="form-control" name="password">
+            </div>
+
+            <input type="submit" class="btn btn-default" data-dismiss="modal" value="submit">
+            <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
+        </form>
+    </div>
+</div>

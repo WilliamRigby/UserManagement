@@ -20,15 +20,15 @@ public class AccountController {
     private IUserService userService;
 
     @RequestMapping(value = "/login", method = RequestMethod.GET)
-    public ModelAndView loginPage(@RequestParam(value = "error", required = false) boolean error) {
+    public ModelAndView loginPage(@RequestParam(value = "error", required = false) String error) {
 
-        String errorMessage = null;
+        ModelAndView model = new ModelAndView("login");
 
-        if(error == true) {
-            errorMessage = "Username or Password is incorrect !!";
+        if(error != null) {
+            model.addObject("errorMessage", "Username or password is incorrect");
         }
 
-        return new ModelAndView("login", "errorMessage", errorMessage);
+        return model;
     }
 
 
@@ -40,6 +40,7 @@ public class AccountController {
 
     @RequestMapping(value="/logout", method = RequestMethod.GET)
     public ModelAndView logoutPage(HttpServletRequest request, HttpServletResponse response) {
+
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
 
         if (auth != null) {
@@ -61,7 +62,7 @@ public class AccountController {
         }
         catch (Exception e) {
 
-            ModelAndView model = new ModelAndView("register", "errorMessage", e.getLocalizedMessage());
+            ModelAndView model = new ModelAndView("register", "errorMessage", e.getMessage());
 
             return model;
         }

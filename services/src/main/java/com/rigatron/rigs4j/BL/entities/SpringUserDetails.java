@@ -12,6 +12,8 @@ public class SpringUserDetails implements UserDetails {
     private User user;
     private Collection<GrantedAuthority> grantedAuthorities;
 
+    public SpringUserDetails() { }
+
     public SpringUserDetails(User user) {
 
         this.user = user;
