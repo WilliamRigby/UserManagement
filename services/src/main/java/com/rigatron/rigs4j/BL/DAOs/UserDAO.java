@@ -43,7 +43,16 @@ public class UserDAO implements IUserDAO, UserDetailsService {
     @Override
     public List<User> getAllUsers() {
         Session session = this.sessionFactory.getCurrentSession();
-        return session.createQuery("from User").list();
+
+        CriteriaBuilder cb = session.getCriteriaBuilder();
+
+        CriteriaQuery<User> q = cb.createQuery(User.class);
+
+        Root<User> c = q.from(User.class);
+
+        q.select(c);
+
+        return session.createQuery(q).getResultList();
     }
 
 

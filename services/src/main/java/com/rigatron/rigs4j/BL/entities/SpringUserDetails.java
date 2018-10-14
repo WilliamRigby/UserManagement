@@ -20,8 +20,8 @@ public class SpringUserDetails implements UserDetails {
 
         List<GrantedAuthority> authorities = new java.util.ArrayList<>();
 
-        for(UserRole role : user.roles) {
-            authorities.add(new SimpleGrantedAuthority(role.role));
+        for(UserRole role : user.getRoles()) {
+            authorities.add(new SimpleGrantedAuthority(role.getRole()));
         }
 
         this.grantedAuthorities = authorities;
@@ -29,12 +29,12 @@ public class SpringUserDetails implements UserDetails {
 
     @Override
     public String getPassword() {
-        return this.user.password;
+        return this.user.getPassword();
     }
 
     @Override
     public String getUsername() {
-        return this.user.username;
+        return this.user.getUsername();
     }
 
     @Override

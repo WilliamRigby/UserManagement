@@ -1,18 +1,22 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
 <c:if test="${not empty errorMessage}"><div style="color:red; font-weight: bold; margin: 30px 0px;">${errorMessage}</div></c:if>
 
-<form action="/adduser" method="POST">
+<div class="row">
+    <div class="col-xs-4" style="margin-left: 50px">
+        <form action="/adduser" method="POST">
+            <p>Register New User</p>
+            <div class="form-group">
+                <label for="username">Username:</label>
+                <input type="text" class="form-control" name="username">
+            </div>
+            <div class="form-group">
+                <label for="password">Password:</label>
+                <input type="password" class="form-control" name="password">
+            </div>
 
-    <p>Register New User</p>
-    <div class="form-group">
-        <label for="username">Name:</label>
-        <input type="text" class="form-control" name="username">
+            <input type="submit" class="btn btn-default" data-dismiss="modal" value="submit">
+            <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
+        </form>
     </div>
-    <div class="form-group">
-        <label for="password">Password:</label>
-        <input type="password" class="form-control" name="password">
-    </div>
-
-    <input type="submit" class="btn btn-default" data-dismiss="modal" value="submit">
-    <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
-</form>
+</div>

@@ -14,10 +14,11 @@
       <a class="navbar-brand" href="/">Rigby4j</a>
     </div>
     <ul class="nav navbar-nav">
-    <li class="active"><a href="/">Home</a></li>
+        <li class="active"><a href="/">Home</a></li>
         <security:authorize access="isAuthenticated()">
             <li><a href="/restricted/">User Restricted</a></li>
         </security:authorize>
+        <li class="active"><a href="/usermanagement/list/">User Management</a></li>
     </ul>
     <ul class="nav navbar-nav navbar-right">
         <security:authorize access="isAuthenticated()">

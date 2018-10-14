@@ -8,13 +8,21 @@ import java.util.Set;
 @Table(name="user_roles")
 public class UserRole {
 
+    private int id;
+    private String role;
+    private Set<User> users = new HashSet<>();
+
     @Id
     @Column(name = "id", updatable = false, nullable = false)
     @GeneratedValue(strategy= GenerationType.IDENTITY)
-    public int id;
+    public int getId() { return this.id; }
 
-    public String role;
+    public String getRole() { return this.role; }
 
     @ManyToMany(mappedBy = "roles")
-    private Set<User> users = new HashSet<>();
+    public Set<User> getUsers() { return this.users; }
+
+    public void setId(int value) { this.id = value; }
+    public void setRole(String value) { this.role = value; }
+    public void setUsers(Set<User> value) { this.users = value; }
 }

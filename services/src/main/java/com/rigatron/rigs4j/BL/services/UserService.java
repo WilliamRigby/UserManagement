@@ -36,18 +36,18 @@ public class UserService implements IUserService {
     public void createUser(String username, String password) {
 
         User user = new User();
-        user.username = username;
-        user.password = encoder.encode(password);
-        user.createDate = new Date();
-        user.lastModifiedDate = new Date();
+        user.setUsername(username);
+        user.setPassword(encoder.encode(password));
+        user.setCreateDate(new Date());
+        user.setLastModifiedDate(new Date());
 
         UserRole role = new UserRole();
 
-        role.id = Roles.REGULARUSER.getValue();
-        role.role = Roles.REGULARUSER.toString();
+        role.setId(Roles.REGULARUSER.getValue());
+        role.setRole(Roles.REGULARUSER.toString());
 
-        user.roles.clear();
-        user.roles.add(role);
+        user.getRoles().clear();
+        user.getRoles().add(role);
 
         this.userDAO.createUser(user);
     }
