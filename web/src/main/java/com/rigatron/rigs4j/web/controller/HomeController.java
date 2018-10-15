@@ -5,9 +5,14 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 import java.io.IOException;
+import javax.annotation.security.PermitAll;
+import javax.annotation.security.RolesAllowed;
+
 
 @Controller
 public class HomeController {
+
+	@PermitAll
 
 	@RequestMapping(value= {"/", "/home"})
 	public ModelAndView Index(@RequestParam(value = "registered", required = false) String registered,
@@ -29,6 +34,7 @@ public class HomeController {
 		return model;
 	}
 
+	@RolesAllowed({"USER", "ADMIN"})
 	@RequestMapping(value="/restricted")
 	public ModelAndView UserRestricted(HttpServletResponse response) throws IOException {
 		return new ModelAndView("restricted");

@@ -2,14 +2,15 @@
 <%@ page import="com.rigatron.rigs4j.web.models.User, com.rigatron.rigs4j.web.models.UserRole" %>
 
 <div class="row">
-    <div class="col-xs-4" style="margin-left: 50px">
-        <table>
+    <div class="col-xs-4 col-xs-offset-2">
+        <table class="table table-striped">
             <thead>
                 <tr>
                   <th>Username</th>
-                  <th>Create Date</th>
-                  <th>Last Modified</th>
-                  <th>Is Enabled</th>
+                  <th class="date-column">Create Date</th>
+                  <th class="date-column">Last Modified</th>
+                  <th>Roles</th>
+                  <th class="is-enabled-column">Is Enabled</th>
                 </tr>
             </thead>
             <tbody>
@@ -18,6 +19,15 @@
                         <td>${user.username}</td>
                         <td>${user.createDate}</td>
                         <td>${user.lastModifiedDate}</td>
+                        <td>${user.roleString}</td>
+                        <c:choose>
+                            <c:when test = "${user.isEnabled}">
+                                <td><span class="glyphicon glyphicon-ok user-enabled-glyphicon"></span></td>
+                            </c:when>
+                            <c:otherwise>
+                                <td><span class="glyphicon glyphicon-remove user-disabled-glyphicon"></span></td>
+                            </c:otherwise>
+                        </c:choose>
                         <td></td>
                     </tr>
                 </c:forEach>

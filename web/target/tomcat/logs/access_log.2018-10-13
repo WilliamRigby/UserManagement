@@ -1,2 +1,0 @@
-0:0:0:0:0:0:0:1 - - [13/Oct/2018:23:38:59 -0400] "GET /usermanagement/list/ HTTP/1.1" 200 2888 http-bio-8080-exec-1 4453
-0:0:0:0:0:0:0:1 - - [13/Oct/2018:23:38:59 -0400] "GET /resources/style.css HTTP/1.1" 200 2 http-bio-8080-exec-3 59

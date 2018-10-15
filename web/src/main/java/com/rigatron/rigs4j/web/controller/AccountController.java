@@ -1,5 +1,7 @@
 package com.rigatron.rigs4j.web.controller;
 
+import javax.annotation.security.PermitAll;
+import javax.annotation.security.RolesAllowed;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import com.rigatron.rigs4j.BL.services.interfaces.IUserService;
@@ -19,6 +21,7 @@ public class AccountController {
     @Autowired
     private IUserService userService;
 
+    @PermitAll
     @RequestMapping(value = "/login", method = RequestMethod.GET)
     public ModelAndView loginPage(@RequestParam(value = "error", required = false) String error) {
 
@@ -31,13 +34,20 @@ public class AccountController {
         return model;
     }
 
-
+    @PermitAll
     @RequestMapping(value="/register")
-    public ModelAndView Register() {
-        return new ModelAndView("register");
+    public ModelAndView register(@RequestParam(value = "error", required = false) String error) {
+
+        ModelAndView model = new ModelAndView("register");
+
+        if(error != null) {
+            model.addObject("errorMessage", "There has been an error");
+        }
+
+        return model;
     }
 
-
+    @RolesAllowed({"ROLE_USER", "ROLE_ADMIN"})
     @RequestMapping(value="/logout", method = RequestMethod.GET)
     public ModelAndView logoutPage(HttpServletRequest request, HttpServletResponse response) {
 
@@ -50,21 +60,18 @@ public class AccountController {
         return new ModelAndView("redirect:/home?logout=true");
     }
 
+    @PermitAll
     @RequestMapping(value="/adduser", method = RequestMethod.POST)
     public ModelAndView addUser(@RequestParam("username") String username, @RequestParam("password") String password) {
 
         try {
             userService.createUser(username, password);
 
-            ModelAndView model = new ModelAndView("redirect:/home?registered=true");
-
-            return model;
+            return new ModelAndView("redirect:/home?registered=true");
         }
         catch (Exception e) {
 
-            ModelAndView model = new ModelAndView("register", "errorMessage", e.getMessage());
-
-            return model;
+            return new ModelAndView("redirect:/register?error=true");
         }
     }
 }

@@ -15,6 +15,7 @@ public class User {
     private Set<UserRole> roles = new HashSet<>();
     private Date createDate;
     private Date lastModifiedDate;
+    private boolean isEnabled;
 
     @Id
     @Column(name = "id", updatable = false, nullable = false)
@@ -44,6 +45,7 @@ public class User {
     public Date getLastModifiedDate() {
         return this.lastModifiedDate;
     }
+    public boolean getIsEnabled() { return this.isEnabled; }
 
     public void setId(int value) { this.id = value; }
     public void setUsername(String value) { this.username = value; }
@@ -51,5 +53,5 @@ public class User {
     public void setRoles(Set<UserRole> value) { this.roles = value; }
     public void setCreateDate(Date value) { this.createDate = value; }
     public void setLastModifiedDate(Date value) { this.lastModifiedDate = value; }
-
+    public void setIsEnabled(boolean value) { this.isEnabled = value; }
 }

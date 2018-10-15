@@ -1,8 +1,6 @@
 package com.rigatron.rigs4j.web.models;
 
-import java.util.Date;
-import java.util.HashSet;
-import java.util.Set;
+import java.util.*;
 
 public class User {
 
@@ -12,6 +10,7 @@ public class User {
     private Set<UserRole> roles = new HashSet<>();
     private Date createDate;
     private Date lastModifiedDate;
+    private boolean isEnabled;
 
     public int getId() { return this.id; }
 
@@ -27,7 +26,9 @@ public class User {
 
     public Set<UserRole> getRoles() { return this.roles; }
 
-    public void setRoles(Set<UserRole> value) { this.roles = value; }
+    public void setRoles(Set<UserRole> value) {
+        this.roles = value;
+    }
 
     public Date getCreateDate() { return this.createDate; }
 
@@ -36,4 +37,24 @@ public class User {
     public Date getLastModifiedDate() { return this.lastModifiedDate; }
 
     public void setLastModifiedDate(Date value) { this.lastModifiedDate = value; }
+
+    public boolean getIsEnabled() { return this.isEnabled; }
+
+    public void setIsEnabled(boolean value) { this.isEnabled = value; }
+
+    public String getRoleString() {
+        String s = "";
+
+        List<UserRole> roles = new ArrayList<>(this.roles);
+
+        for(int i = 0; i < roles.size(); i++) {
+            s += roles.get(i).getRole();
+
+            if(i < roles.size() - 1) {
+                s += "<br/>";
+            }
+        }
+
+        return s;
+    }
 }

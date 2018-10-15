@@ -40,13 +40,13 @@ public class UserService implements IUserService {
         user.setPassword(encoder.encode(password));
         user.setCreateDate(new Date());
         user.setLastModifiedDate(new Date());
+        user.setIsEnabled(true);
 
         UserRole role = new UserRole();
 
         role.setId(Roles.REGULARUSER.getValue());
         role.setRole(Roles.REGULARUSER.toString());
 
-        user.getRoles().clear();
         user.getRoles().add(role);
 
         this.userDAO.createUser(user);

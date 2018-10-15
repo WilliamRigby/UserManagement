@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
+import javax.annotation.security.RolesAllowed;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
@@ -22,6 +23,7 @@ public class UserManagementController {
     @Autowired
     private IUserService userService;
 
+    @RolesAllowed("ROLE_ADMIN")
     @RequestMapping(value = "/list", method = RequestMethod.GET)
     public ModelAndView userList() {
 
@@ -43,6 +45,7 @@ public class UserManagementController {
             user.setRoles(MapRoles(u.getRoles()));
             user.setCreateDate(u.getCreateDate());
             user.setLastModifiedDate(u.getLastModifiedDate());
+            user.setIsEnabled(u.getIsEnabled());
 
             mapped.add(user);
         }

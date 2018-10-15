@@ -4,12 +4,12 @@ public enum Roles {
 
     REGULARUSER(1) {
         public String toString() {
-            return "USER";
+            return "ROLE_USER";
         }
     },
     ADMIN(2) {
         public String toString() {
-            return "ADMIN";
+            return "ROLE_ADMIN";
         }
     };
 

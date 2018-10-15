@@ -1,1 +1,19 @@
 
+
+.date-column {
+    min-width: 200px;
+}
+
+.is-enabled-column {
+    min-width: 120px;
+}
+
+.user-enabled-glyphicon {
+    color: green;
+    margin-left: 20px;
+}
+
+.user-disabled-glyphicon {
+    color: red;
+    margin-left: 20px;
+}

@@ -3,7 +3,7 @@
 <c:if test="${not empty errorMessage}"><div style="color:red; font-weight: bold; margin: 30px 0px;">${errorMessage}</div></c:if>
 
 <div class="row">
-    <div class="col-xs-4" style="margin-left: 50px">
+    <div class="col-xs-4 col-xs-offset-1">
         <form action="/login" method="POST">
             <p>Login</p>
             <div class="form-group">
