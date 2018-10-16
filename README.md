@@ -12,7 +12,9 @@ This will allow you to set breakpoints and debug locally.
 When running locally, you must create these environment variables on your dev machine:
 
 JDBC_DATABASE_URL : jdbc:postgresql://{server}:{port}/{db}?user={user}&password={password}&sslmode=require
+
 JDBC_DATABASE_USERNAME : {username}
+
 JDBC_DATABASE_PASSWORD : {password}
 
 When deploying to prod, these vars will already exist for the prod database
@@ -29,8 +31,8 @@ check if those values already existed with the context start up and then insert 
 constantly fetch that data based on magic strings of "user" or "admin".  So I figured this enum was the
 lesser of the two evils, idk.
 
-Also, the most interesting part of the app is the user management page obviously, but you can't navigate to
+**ALSO, the most interesting part of the app is the user management page obviously, but you can't navigate to
 those pages unless your current user has admin privileges.  So the first admin has to be created with SQL,
-and then that admin can promote other users to admin.
+and then that admin can promote other users to admin.**
 
 
