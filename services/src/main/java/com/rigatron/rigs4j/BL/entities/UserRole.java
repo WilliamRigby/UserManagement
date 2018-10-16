@@ -5,6 +5,7 @@ import java.util.HashSet;
 import java.util.Set;
 
 @Entity
+@Access(AccessType.PROPERTY)
 @Table(name="user_roles")
 public class UserRole {
 

@@ -85,7 +85,16 @@ public class UserDAO implements IUserDAO, UserDetailsService {
     @Override
     public User getUserById(int id) {
         Session session = this.sessionFactory.getCurrentSession();
-        return session.load(User.class, id);
+
+        CriteriaBuilder cb = session.getCriteriaBuilder();
+
+        CriteriaQuery<User> q = cb.createQuery(User.class);
+
+        Root<User> c = q.from(User.class);
+
+        q.select(c).where(cb.equal(c.get("id"), id));
+
+        return session.createQuery(q).getSingleResult();
     }
 
     @Override

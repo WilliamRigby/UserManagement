@@ -1,5 +1,7 @@
 package com.rigatron.rigs4j.web.models;
 
+import com.rigatron.rigs4j.BL.entities.enums.Roles;
+
 import java.util.*;
 
 public class User {
@@ -56,5 +58,17 @@ public class User {
         }
 
         return s;
+    }
+
+    public boolean getIsAdmin() {
+        List<UserRole> roles = new ArrayList<>(this.roles);
+
+        for(UserRole role : roles) {
+            if(role.getRole().equals(Roles.ADMIN.toString())) {
+                return true;
+            }
+        }
+
+        return false;
     }
 }

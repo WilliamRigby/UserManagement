@@ -1,7 +1,9 @@
 package com.rigatron.rigs4j.BL.services;
 
 import java.util.Date;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 import com.rigatron.rigs4j.BL.DAOs.interfaces.IUserRoleDAO;
 import com.rigatron.rigs4j.BL.entities.User;
@@ -53,7 +55,14 @@ public class UserService implements IUserService {
     }
 
     @Override
-    public void updateUser(User user) {
+    public void updateUser(int userId, boolean isEnabled, boolean isAdmin) {
+
+        User user = this.userDAO.getUserById(userId);
+
+        user.setIsEnabled(isEnabled);
+
+        toggleAdmin(user, isAdmin);
+
         this.userDAO.updateUser(user);
     }
 
@@ -72,4 +81,39 @@ public class UserService implements IUserService {
         this.userDAO.deleteUserById(id);
     }
 
+    private void toggleAdmin(User user, boolean newIsAdmin) {
+
+        boolean alreadyAdmin = false;
+
+        for(UserRole role : user.getRoles()) {
+            if(role.getRole().equals(Roles.ADMIN.toString())) {
+                alreadyAdmin = true;
+            }
+        }
+
+        if(!alreadyAdmin && newIsAdmin) { // add admin role
+
+            UserRole role = new UserRole();
+
+            role.setId(user.getId());
+            role.setRole(Roles.ADMIN.toString());
+
+            Set<UserRole> roles = user.getRoles();
+            roles.add(role);
+            user.setRoles(roles);
+        }
+        else if(alreadyAdmin && !newIsAdmin) { // remove admin role
+
+            Set<UserRole> roles = user.getRoles();
+            Set<UserRole> newRoles = new HashSet<>();
+
+            for(UserRole role : roles) {
+                if(!role.getRole().equals(Roles.ADMIN.toString())) {
+                    newRoles.add(role);
+                }
+            }
+
+            user.setRoles(newRoles);
+        }
+    }
 }

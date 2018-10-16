@@ -16,7 +16,7 @@
             <tbody>
                 <c:forEach items="${users}" var="user">
                     <tr>
-                        <td>${user.username}</td>
+                        <td><a href="/usermanagement/userDetails?userId=${user.id}">${user.username}</a></td>
                         <td>${user.createDate}</td>
                         <td>${user.lastModifiedDate}</td>
                         <td>${user.roleString}</td>

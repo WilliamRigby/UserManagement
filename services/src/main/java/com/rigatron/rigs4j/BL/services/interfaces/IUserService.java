@@ -8,7 +8,7 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 public interface IUserService {
 
     void createUser(String username, String password);
-    void updateUser(User p);
+    void updateUser(int userId, boolean isEnabled, boolean isAdmin);
     List<User> getAllUsers();
     User getUserById(int id);
     void deleteUserById(int id);

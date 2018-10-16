@@ -13,7 +13,6 @@ import javax.annotation.security.RolesAllowed;
 public class HomeController {
 
 	@PermitAll
-
 	@RequestMapping(value= {"/", "/home"})
 	public ModelAndView Index(@RequestParam(value = "registered", required = false) String registered,
 							  @RequestParam(value = "loggedin", required = false) String loggedin,

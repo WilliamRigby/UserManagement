@@ -27,30 +27,49 @@ public class UserManagementController {
     @RequestMapping(value = "/list", method = RequestMethod.GET)
     public ModelAndView userList() {
 
-        List<User> users = MapUsers(userService.getAllUsers());
+        List<User> users = new ArrayList<>();
+
+        for(com.rigatron.rigs4j.BL.entities.User u : userService.getAllUsers()) {
+            User user = MapUser(u);
+            users.add(user);
+        }
 
         return new ModelAndView("userList", "users", users);
     }
 
-    private List<User> MapUsers(List<com.rigatron.rigs4j.BL.entities.User> users) {
+    @RolesAllowed("ROLE_ADMIN")
+    @RequestMapping(value = "/userDetails", method = RequestMethod.GET)
+    public ModelAndView userDetails(@RequestParam(value = "userId", required = true) int userId) {
 
-        List<User> mapped = new ArrayList<>();
+        User user = MapUser(userService.getUserById(userId));
 
-        for(com.rigatron.rigs4j.BL.entities.User u : users) {
-            User user = new User();
+        return new ModelAndView("userDetails", "user", user);
+    }
 
-            user.setId(u.getId());
-            user.setUsername(u.getUsername());
-            user.setPassword(u.getPassword());
-            user.setRoles(MapRoles(u.getRoles()));
-            user.setCreateDate(u.getCreateDate());
-            user.setLastModifiedDate(u.getLastModifiedDate());
-            user.setIsEnabled(u.getIsEnabled());
+    @RolesAllowed("ROLE_ADMIN")
+    @RequestMapping(value = "/updateUser", method = RequestMethod.POST)
+    public ModelAndView updateUser(@RequestParam(value = "userId", required = true) int userId,
+                                   @RequestParam(value = "isEnabled", required = true) boolean isEnabled,
+                                   @RequestParam(value = "isAdmin", required = true) boolean isAdmin) {
 
-            mapped.add(user);
-        }
+        this.userService.updateUser(userId, isEnabled, isAdmin);
 
-        return mapped;
+        return new ModelAndView("redirect:/usermanagement/list");
+    }
+
+    private User MapUser(com.rigatron.rigs4j.BL.entities.User u) {
+
+        User user = new User();
+
+        user.setId(u.getId());
+        user.setUsername(u.getUsername());
+        user.setPassword(u.getPassword());
+        user.setRoles(MapRoles(u.getRoles()));
+        user.setCreateDate(u.getCreateDate());
+        user.setLastModifiedDate(u.getLastModifiedDate());
+        user.setIsEnabled(u.getIsEnabled());
+
+        return user;
     }
 
     private Set<UserRole> MapRoles(Set<com.rigatron.rigs4j.BL.entities.UserRole> roles) {

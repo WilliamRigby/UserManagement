@@ -15,7 +15,7 @@
                 <input type="password" class="form-control" name="password">
             </div>
 
-            <input type="submit" class="btn btn-default" data-dismiss="modal" value="submit">
+            <input type="submit" class="btn btn-default" value="submit">
             <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
         </form>
     </div>
