@@ -21,8 +21,9 @@ When making schema changes, you can change value for "hibernate.hbm2ddl.auto" to
 However, after doing so, the user_roles table must be seeded with the values:
 
  1 - "ROLE_USER"
- 2 - "ROLE_ADMIN"
  
+ 2 - "ROLE_ADMIN"
+
 In that order.  This is coupled with the Roles enum.  This is probably a code smell but I didn't want to
 check if those values already existed with the context start up and then insert them if not.  And then
 constantly fetch that data based on magic strings of "user" or "admin".  So I figured this enum was the

@@ -77,6 +77,9 @@ public class UserService implements IUserService {
     }
 
     @Override
+    public User getUserByName(String username) { return this.userDAO.getUserByName(username); }
+
+    @Override
     public void deleteUserById(int id) {
         this.userDAO.deleteUserById(id);
     }

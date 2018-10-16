@@ -11,6 +11,7 @@ public interface IUserService {
     void updateUser(int userId, boolean isEnabled, boolean isAdmin);
     List<User> getAllUsers();
     User getUserById(int id);
+    User getUserByName(String name);
     void deleteUserById(int id);
 
 }
