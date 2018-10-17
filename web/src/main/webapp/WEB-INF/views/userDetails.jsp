@@ -1,5 +1,5 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%@ page import="com.rigatron.rigs4j.web.models.User, com.rigatron.rigs4j.web.models.UserRole" %>
+<%@ page import="com.rigatron.rigs4j.web.models.UserVM, com.rigatron.rigs4j.web.models.UserRoleVM" %>
 
 <div class="row">
     <div class="col-xs-4 col-xs-offset-2">

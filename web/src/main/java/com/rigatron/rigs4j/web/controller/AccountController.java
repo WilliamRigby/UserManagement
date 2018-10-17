@@ -2,12 +2,11 @@ package com.rigatron.rigs4j.web.controller;
 
 import javax.annotation.security.PermitAll;
 import javax.annotation.security.RolesAllowed;
-import javax.persistence.NoResultException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import com.rigatron.rigs4j.BL.services.interfaces.IUserService;
-import com.rigatron.rigs4j.web.models.User;
-import com.rigatron.rigs4j.web.models.UserRole;
+import com.rigatron.rigs4j.web.Utilities.ModelMapper;
+import com.rigatron.rigs4j.web.models.UserVM;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.security.core.Authentication;
@@ -19,8 +18,6 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
-import java.util.HashSet;
-import java.util.Set;
 import java.util.regex.Pattern;
 
 @Controller
@@ -106,7 +103,7 @@ public class AccountController {
             }
 
             try {
-                User duplicate = MapUser(userService.getUserByName(username));
+                UserVM duplicate = ModelMapper.MapUser(userService.getUserByName(username));
                 return new ModelAndView("redirect:/register?duplicateUsername=true");
             }
             catch(EmptyResultDataAccessException e) { }
@@ -119,36 +116,5 @@ public class AccountController {
 
             return new ModelAndView("redirect:/register?error=true");
         }
-    }
-
-    private User MapUser(com.rigatron.rigs4j.BL.entities.User u) {
-
-        User user = new User();
-
-        user.setId(u.getId());
-        user.setUsername(u.getUsername());
-        user.setPassword(u.getPassword());
-        user.setRoles(MapRoles(u.getRoles()));
-        user.setCreateDate(u.getCreateDate());
-        user.setLastModifiedDate(u.getLastModifiedDate());
-        user.setIsEnabled(u.getIsEnabled());
-
-        return user;
-    }
-
-    private Set<UserRole> MapRoles(Set<com.rigatron.rigs4j.BL.entities.UserRole> roles) {
-
-        Set<UserRole> mapped = new HashSet<>();
-
-        for(com.rigatron.rigs4j.BL.entities.UserRole r : roles) {
-            UserRole role = new UserRole();
-
-            role.setId(r.getId());
-            role.setRole(r.getRole());
-
-            mapped.add(role);
-        }
-
-        return mapped;
     }
 }

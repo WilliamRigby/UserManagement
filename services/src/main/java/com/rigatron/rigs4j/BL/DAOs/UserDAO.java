@@ -12,7 +12,6 @@ import org.springframework.stereotype.Repository;
 import com.rigatron.rigs4j.BL.DAOs.interfaces.IUserDAO;
 import com.rigatron.rigs4j.BL.entities.User;
 import org.springframework.transaction.annotation.Transactional;
-
 import javax.persistence.NoResultException;
 import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;

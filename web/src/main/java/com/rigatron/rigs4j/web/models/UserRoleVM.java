@@ -1,6 +1,6 @@
 package com.rigatron.rigs4j.web.models;
 
-public class UserRole {
+public class UserRoleVM {
 
     private int id;
     private String role;

@@ -4,12 +4,12 @@ import com.rigatron.rigs4j.BL.entities.enums.Roles;
 
 import java.util.*;
 
-public class User {
+public class UserVM {
 
     private int id;
     private String username;
     private String password;
-    private Set<UserRole> roles = new HashSet<>();
+    private Set<UserRoleVM> roles = new HashSet<>();
     private Date createDate;
     private Date lastModifiedDate;
     private boolean isEnabled;
@@ -26,9 +26,9 @@ public class User {
 
     public void setPassword(String value) { this.password = value; }
 
-    public Set<UserRole> getRoles() { return this.roles; }
+    public Set<UserRoleVM> getRoles() { return this.roles; }
 
-    public void setRoles(Set<UserRole> value) {
+    public void setRoles(Set<UserRoleVM> value) {
         this.roles = value;
     }
 
@@ -47,7 +47,7 @@ public class User {
     public String getRoleString() {
         String s = "";
 
-        List<UserRole> roles = new ArrayList<>(this.roles);
+        List<UserRoleVM> roles = new ArrayList<>(this.roles);
 
         for(int i = 0; i < roles.size(); i++) {
             s += roles.get(i).getRole();
@@ -61,9 +61,9 @@ public class User {
     }
 
     public boolean getIsAdmin() {
-        List<UserRole> roles = new ArrayList<>(this.roles);
+        List<UserRoleVM> roles = new ArrayList<>(this.roles);
 
-        for(UserRole role : roles) {
+        for(UserRoleVM role : roles) {
             if(role.getRole().equals(Roles.ADMIN.toString())) {
                 return true;
             }

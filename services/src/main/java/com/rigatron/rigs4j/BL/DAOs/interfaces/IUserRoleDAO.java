@@ -1,7 +1,6 @@
 package com.rigatron.rigs4j.BL.DAOs.interfaces;
 
 import com.rigatron.rigs4j.BL.entities.UserRole;
-
 import java.util.List;
 
 public interface IUserRoleDAO {

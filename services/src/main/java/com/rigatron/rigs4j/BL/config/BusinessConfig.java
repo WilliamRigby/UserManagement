@@ -43,7 +43,6 @@ public class BusinessConfig {
         UserService userService =  new UserService();
 
         userService.setUserDAO(userDAO());
-        userService.setUserRoleDAO(userRoleDAO());
 
         return userService;
     }
